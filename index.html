@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cornichon — A quick trick-taking duel you must NOT win last</title>
+  <meta name="description" content="Cornichon is a fast two-player trick-taking game inspired by the Nordic classic Agurk. Goal: do not win the last trick. Play online now." />
+  <meta name="keywords" content="Cornichon, Agurk, Five Cucumbers, trick-taking card game, online game" />
+  <link rel="canonical" href="https://cornichon.online/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Cornichon — A quick trick-taking duel" />
+  <meta property="og:description" content="Goal: do not win the last trick. A brisk two-player trick-taking classic. Play in your browser." />
+  <meta property="og:url" content="https://cornichon.online/" />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config: Apple-ish palette (Blues/Grays/Accent)
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            appleBlue: '#007aff',
+            appleGray: '#1d1d1f',
+            appleBg: '#f5f5f7',
+            appleCard: '#ffffff',
+            appleGreen: '#34c759',
+            appleIndigo: '#5856d6',
+            appleOrange: '#ff9500'
+          },
+          boxShadow: {
+            soft: '0 8px 30px rgba(0,0,0,0.06)'
+          },
+          borderRadius: {
+            '2xl': '1.25rem'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- JSON-LD for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Cornichon",
+    "url": "https://cornichon.online/",
+    "gamePlatform": ["Web Browser"],
+    "description": "A two-player trick-taking browser game inspired by Agurk. You must avoid winning the last trick.",
+    "genre": "Card Game",
+    "playMode": "SinglePlayer",
+    "operatingSystem": "Any modern browser",
+    "applicationCategory": "Game"
+  }
+  </script>
+
+  <style>
+    /* Minimal extras for nicer scroll and selection */
+    html { scroll-behavior: smooth; }
+    ::selection { background: #dbeafe; color:#111827; }
+  </style>
+</head>
+<body class="min-h-screen bg-appleBg text-appleGray antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/70 border-b border-black/5">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 font-semibold tracking-tight">
+        <span class="inline-flex h-8 w-8 rounded-xl bg-appleBlue text-white items-center justify-center">C</span>
+        <span>Cornichon</span>
+      </a>
+      <nav class="hidden sm:flex items-center gap-6 text-sm">
+        <a href="#play" class="hover:text-appleBlue transition">Play</a>
+        <a href="#about" class="hover:text-appleBlue transition">About</a>
+        <a href="#rules" class="hover:text-appleBlue transition">Rules</a>
+        <a href="#faq" class="hover:text-appleBlue transition">FAQ</a>
+      </nav>
+      <a href="#play" class="text-white bg-appleBlue hover:bg-appleIndigo transition px-4 py-2 rounded-xl text-sm">Play Now</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-4 pt-10 pb-8">
+    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-appleGray">
+      Cornichon
+    </h1>
+    <p class="mt-4 text-lg sm:text-xl text-gray-700">
+      A fast trick-taking duel where the only thing worse than losing is <span class="font-semibold text-appleBlue">winning the last trick</span>.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3 text-sm text-gray-600">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white shadow-soft">
+        🧍‍♂️ Players: 2
+      </span>
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white shadow-soft">
+        🎯 Ages: 8+
+      </span>
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white shadow-soft">
+        ⏱️ Time: ~25 minutes (quick browser round)
+      </span>
+    </div>
+  </section>
+
+  <!-- Game IFRAME -->
+  <section id="play" class="max-w-6xl mx-auto px-4 pb-14">
+    <div class="bg-appleCard shadow-soft rounded-2xl p-4 sm:p-6">
+      <h2 class="text-2xl font-bold">Play Online</h2>
+      <p class="text-gray-600 mt-2">
+        Tap or click cards to play. If you can beat the current card, you must play a card of equal or higher value. Otherwise, you must throw your lowest card. Do <em>not</em> win the final trick!
+      </p>
+      <div class="mt-4">
+        <iframe id="cornichon-frame" title="Cornichon Online Game"
+          class="w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl border border-black/10"
+          loading="eager" referrerpolicy="no-referrer"></iframe>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-3">
+        <button id="btn-reload" class="px-4 py-2 rounded-xl bg-appleBlue text-white hover:bg-appleIndigo transition text-sm">Restart Game</button>
+        <a href="#rules" class="px-4 py-2 rounded-xl bg-white border border-black/10 text-sm hover:border-black/20">See Rules</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="max-w-6xl mx-auto px-4 pb-10">
+    <div class="bg-appleCard shadow-soft rounded-2xl p-6">
+      <h2 class="text-2xl font-bold">What is Cornichon?</h2>
+      <p class="mt-3 text-gray-700">
+        Cornichon is a modern, browser-friendly take on a Nordic family classic known as
+        <span class="font-medium">Agurk</span> (DK), <span class="font-medium">Gurka</span> (SE),
+        <span class="font-medium">Ogórek</span> (PL), and <span class="font-medium">Kurkku</span> (FI).
+        It’s a trick-taking duel with a twist: you’re trying to avoid capturing the <em>last</em> trick.
+      </p>
+      <ul class="mt-4 space-y-2 text-gray-700 list-disc pl-6">
+        <li><strong>Players:</strong> 2</li>
+        <li><strong>Ages:</strong> 8+</li>
+        <li><strong>Play time:</strong> ~25 minutes for a full table game; this web demo delivers a brisk head-to-head round.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Rules -->
+  <section id="rules" class="max-w-6xl mx-auto px-4 pb-10">
+    <div class="bg-appleCard shadow-soft rounded-2xl p-6">
+      <h2 class="text-2xl font-bold">How to Play (Browser Demo)</h2>
+      <ol class="mt-3 space-y-3 text-gray-700 list-decimal pl-6">
+        <li><strong>Deck:</strong> 60 cards (values 1–15 in four suits). Both sides are dealt 7 cards.</li>
+        <li><strong>Lead:</strong> Player starts the first trick and the winner of a trick leads the next.</li>
+        <li><strong>Play rule:</strong> If you can match or exceed the current card, you must play one that is <em>equal or higher</em>. If you can’t, you must discard your <em>lowest</em> card.</li>
+        <li><strong>Trick winner:</strong> Highest card in the trick wins (ties go to the later card played).</li>
+        <li><strong>Goal:</strong> Avoid winning the <em>final</em> trick. In this demo, whoever wins the last trick is declared the loser.</li>
+      </ol>
+
+      <h2 class="text-2xl font-bold mt-8">Materials (Tabletop)</h2>
+      <ul class="mt-3 space-y-2 text-gray-700 list-disc pl-6">
+        <li>60 cards</li>
+        <li>30 cucumbers (scoring tokens) — optional in this demo</li>
+        <li>Rule sheet</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Why it's fun -->
+  <section id="fun" class="max-w-6xl mx-auto px-4 pb-10">
+    <div class="bg-appleCard shadow-soft rounded-2xl p-6">
+      <h2 class="text-2xl font-bold">Why it’s Fun</h2>
+      <p class="mt-3 text-gray-700">
+        Every turn asks a sharp choice: burn a high card to take control, or dump your lowest to stay flexible.
+        Like balancing a seesaw, timing is everything—especially as the last trick approaches.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-6xl mx-auto px-4 pb-16">
+    <div class="bg-appleCard shadow-soft rounded-2xl p-6">
+      <h2 class="text-2xl font-bold">FAQ</h2>
+      <div class="mt-3 space-y-4 text-gray-700">
+        <details class="group">
+          <summary class="cursor-pointer font-medium">Is this the full tabletop scoring?</summary>
+          <p class="mt-2 pl-1">
+            This browser demo focuses on the core flow (don’t win the last trick) for fast online play.
+          </p>
+        </details>
+        <details class="group">
+          <summary class="cursor-pointer font-medium">Can I play on mobile?</summary>
+          <p class="mt-2 pl-1">Yes. The layout is responsive and touch-friendly.</p>
+        </details>
+        <details class="group">
+          <summary class="cursor-pointer font-medium">Why “Cornichon”?</summary>
+          <p class="mt-2 pl-1">It nods to the cucumber theme found in Nordic variants like Agurk/Gurka.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-black/5">
+    <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-gray-600 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p>© <span id="y"></span> cornichon.online</p>
+      <p>Built with Tailwind CSS • Apple-style palette • One-page SEO</p>
+    </div>
+  </footer>
+
+  <!-- IFRAME game srcdoc template -->
+  <template id="game-srcdoc">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cornichon Game</title>
+<style>
+  :root{
+    --bg:#ffffff;--muted:#f5f5f7;--text:#1d1d1f;--blue:#007aff;--indigo:#5856d6;--green:#34c759;--orange:#ff9500;--line:rgba(0,0,0,.08);
+  }
+  html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;}
+  body{background:var(--bg);color:var(--text);}
+  .wrap{max-width:1000px;margin:0 auto;padding:16px;}
+  .board{display:grid;grid-template-rows:auto auto 1fr auto;gap:12px;background:var(--muted);border:1px solid var(--line);border-radius:14px;padding:12px;}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+  .tag{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px}
+  .status{font-weight:600}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;min-height:70px}
+  .card{user-select:none;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:46px;text-align:center;box-shadow:0 6px 16px rgba(0,0,0,.06);transition:transform .12s ease, box-shadow .12s ease}
+  .card:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.08)}
+  .card.disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+  .lead{border:2px solid var(--blue)}
+  .you{border-left:4px solid var(--blue)}
+  .ai{border-left:4px solid var(--indigo)}
+  .btn{cursor:pointer;background:var(--blue);color:#fff;border:none;border-radius:10px;padding:8px 12px;font-weight:600}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .pile{display:flex;gap:8px;align-items:center;justify-content:center;min-height:56px}
+  .pill{background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px}
+  .hint{font-size:12px;color:#555}
+  .toast{position:fixed;right:12px;bottom:12px;background:#111;color:#fff;border-radius:12px;padding:10px 12px;font-size:13px;opacity:.95}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="board">
+    <div class="bar">
+      <div class="tag"><strong>Cornichon</strong> — don’t win the last trick</div>
+      <div class="tag">Deck: 1–15 × 4 • Hands: 7</div>
+    </div>
+
+    <div class="row">
+      <div class="pill ai">AI’s hand: <span id="ai-count">7</span> cards</div>
+      <div class="pill">Trick #: <span id="trick-no">1</span></div>
+      <div class="pill">Current to beat: <span id="to-beat">—</span></div>
+      <button id="btn-new" class="btn">New Deal</button>
+    </div>
+
+    <div class="pile" id="pile"></div>
+
+    <div class="row">
+      <div id="your-hand" class="row"></div>
+    </div>
+
+    <div class="row" style="justify-content:space-between">
+      <div class="hint">Rule: if you can meet or beat the current card, you must. Otherwise discard your lowest.</div>
+      <div class="status" id="status">Your lead</div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" style="display:none"></div>
+
+<script>
+(function(){
+  const state = {
+    deck: [],
+    yourHand: [],
+    aiHand: [],
+    pile: [],
+    toBeat: null,
+    lead: 'you', // 'you' or 'ai'
+    trick: 1,
+    lastWinner: null,
+    gameOver: false
+  };
+
+  const el = {
+    aiCount: document.getElementById('ai-count'),
+    trickNo: document.getElementById('trick-no'),
+    toBeat: document.getElementById('to-beat'),
+    pile: document.getElementById('pile'),
+    yourHand: document.getElementById('your-hand'),
+    status: document.getElementById('status'),
+    toast: document.getElementById('toast'),
+    btnNew: document.getElementById('btn-new')
+  };
+
+  function toast(msg, t=1600){
+    el.toast.textContent = msg;
+    el.toast.style.display = 'block';
+    setTimeout(()=>{ el.toast.style.display='none'; }, t);
+  }
+
+  function buildDeck(){
+    const d=[];
+    for(let v=1; v<=15; v++){
+      for(let s=0; s<4; s++){
+        d.push({v, id:`${v}-${s}`});
+      }
+    }
+    return d;
+  }
+
+  function shuffle(a){
+    for(let i=a.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+  }
+
+  function deal(){
+    state.deck = buildDeck();
+    shuffle(state.deck);
+    state.yourHand = state.deck.splice(0,7).sort((a,b)=>a.v-b.v);
+    state.aiHand = state.deck.splice(0,7).sort((a,b)=>a.v-b.v);
+    state.pile = [];
+    state.toBeat = null;
+    state.lead = 'you';
+    state.trick = 1;
+    state.lastWinner = null;
+    state.gameOver = false;
+    render();
+    toast('New deal. You lead.');
+  }
+
+  function playable(hand, toBeat){
+    if(toBeat==null){
+      // any card is playable on lead
+      return hand.map(c=>c.id);
+    }
+    const canBeat = hand.filter(c=>c.v>=toBeat);
+    if(canBeat.length>0){
+      // must play equal or higher
+      return canBeat.map(c=>c.id);
+    }else{
+      // must play lowest card(s) — here lowest may have duplicates
+      const min = Math.min(...hand.map(c=>c.v));
+      return hand.filter(c=>c.v===min).map(c=>c.id);
+    }
+  }
+
+  function playCardFrom(hand, id){
+    const idx = hand.findIndex(c=>c.id===id);
+    return hand.splice(idx,1)[0];
+  }
+
+  function aiChoose(){
+    const ids = playable(state.aiHand, state.toBeat);
+    // strategy: if can beat, play the smallest that satisfies; else lowest
+    const choices = state.aiHand.filter(c=>ids.includes(c.id)).sort((a,b)=>a.v-b.v);
+    return choices[0];
+  }
+
+  function endTrick(){
+    const last = state.pile[state.pile.length-1];
+    // last is second played in this two-player trick
+    const prev = state.pile[state.pile.length-2];
+    const winner = (last.v>=prev.v) ? last.playedBy : prev.playedBy;
+    state.lastWinner = winner;
+    state.lead = winner;
+    state.toBeat = null;
+    state.pile = [];
+    state.trick += 1;
+    render();
+
+    if(state.yourHand.length===0 && state.aiHand.length===0){
+      // game ends — whoever won the last trick LOSES
+      state.gameOver = true;
+      const loser = state.lastWinner;
+      const msg = (loser==='you')
+        ? 'You won the last trick — you LOSE this round.'
+        : 'AI won the last trick — AI LOSES. You win!';
+      toast('Round over.', 1200);
+      el.status.textContent = msg;
+      return;
+    }
+
+    el.status.textContent = (state.lead==='you') ? 'Your lead' : 'AI leads';
+    if(state.lead==='ai'){ setTimeout(aiLead, 650); }
+  }
+
+  function aiLead(){
+    if(state.gameOver) return;
+    // AI leads any card — choose a middling one to avoid extremes
+    const mid = Math.floor(state.aiHand.length/2);
+    const card = state.aiHand.splice(mid,1)[0];
+    state.pile.push({...card, playedBy:'ai'});
+    state.toBeat = card.v;
+    render();
+    el.status.textContent='Your turn (must meet or beat, otherwise lowest).';
+  }
+
+  function onYouPlay(id){
+    if(state.gameOver) return;
+    const legal = playable(state.yourHand, state.toBeat);
+    if(!legal.includes(id)) return;
+
+    // You play
+    const yourCard = playCardFrom(state.yourHand, id);
+    state.pile.push({...yourCard, playedBy:'you'});
+    if(state.toBeat==null){
+      // you led — AI must respond
+      state.toBeat = yourCard.v;
+      render();
+      setTimeout(()=>{
+        const aiCard = aiChoose();
+        // play chosen
+        state.aiHand = state.aiHand.filter(c=>c.id!==aiCard.id);
+        state.pile.push({...aiCard, playedBy:'ai'});
+        render();
+        setTimeout(endTrick, 500);
+      }, 500);
+    }else{
+      // you responded — trick ends
+      render();
+      setTimeout(endTrick, 350);
+    }
+  }
+
+  function render(){
+    // counts
+    el.aiCount.textContent = state.aiHand.length;
+    el.trickNo.textContent = state.trick;
+    el.toBeat.textContent = (state.toBeat==null ? '—' : state.toBeat);
+
+    // pile
+    el.pile.innerHTML = '';
+    state.pile.forEach((c,i)=>{
+      const div = document.createElement('div');
+      div.className = 'card ' + (c.playedBy==='you'?'you':'ai') + (i===state.pile.length-1?' lead':'');
+      div.textContent = c.v;
+      el.pile.appendChild(div);
+    });
+
+    // your hand
+    el.yourHand.innerHTML = '';
+    const legal = playable(state.yourHand, state.toBeat);
+    state.yourHand.forEach(c=>{
+      const b = document.createElement('button');
+      b.className = 'card';
+      if(!legal.includes(c.id)) b.classList.add('disabled');
+      b.textContent = c.v;
+      b.onclick = ()=>onYouPlay(c.id);
+      el.yourHand.appendChild(b);
+    });
+  }
+
+  el.btnNew.addEventListener('click', deal);
+  deal(); // initial
+})();
+</script>
+</body>
+</html>
+  </template>
+
+  <script>
+    // Inject srcdoc into iframe for better readability in outer HTML
+    const iframe = document.getElementById('cornichon-frame');
+    const tpl = document.getElementById('game-srcdoc');
+    iframe.srcdoc = tpl.innerHTML;
+    document.getElementById('btn-reload').addEventListener('click', () => {
+      iframe.srcdoc = tpl.innerHTML;
+      // attempt to focus into iframe for accessibility
+      setTimeout(()=>iframe.contentWindow?.focus(), 200);
+    });
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
