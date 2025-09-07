@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Cornichons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #e0f2fe;
+            color: #1e40af;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card {
+            width: 60px;
+            height: 90px;
+            background-color: #b9f7a7;
+            border: 2px solid #34d399;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #166534;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .player-hand {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            min-height: 110px;
+        }
+
+        .played-card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            min-height: 110px;
+        }
+
+        .played-card {
+            background-color: #fca5a5;
+            border: 2px solid #ef4444;
+            color: #991b1b;
+        }
+
+        .game-info {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #3b82f6;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .player-score, .ai-score {
+            font-size: 1.25rem;
+            font-weight: bold;
+            background-color: #d1fae5;
+            padding: 10px 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cornichon-icon {
+            font-size: 1.5rem;
+            color: #16a34a;
+            filter: hue-rotate(0deg) saturate(1.5) brightness(1.1);
+        }
+
+        .btn {
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: scale(1.05);
+        }
+
+        .disabled-card {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div id="game-container" class="container">
+        <h1 class="text-4xl font-bold mb-4 text-blue-800">Five Cornichons</h1>
+        <p class="text-lg text-gray-600 mb-8">A strategy card game where you must avoid winning the last trick.</p>
+
+        <div id="game-screen" class="hidden">
+            <div class="score-board">
+                <div class="player-score">
+                    <span class="cornichon-icon">&#129370;</span>
+                    <span>You: <span id="player-score">0</span></span>
+                </div>
+                <div class="ai-score">
+                    <span class="cornichon-icon">&#129370;</span>
+                    <span>AI: <span id="ai-score">0</span></span>
+                </div>
+            </div>
+
+            <div class="text-xl font-bold mt-8 mb-4">AI's Hand</div>
+            <div id="ai-hand" class="player-hand"></div>
+
+            <div class="played-card-container">
+                <div id="ai-played-card" class="card played-card hidden"></div>
+                <div id="player-played-card" class="card played-card hidden"></div>
+            </div>
+
+            <div id="status-message" class="game-info text-2xl font-bold text-blue-600 my-4"></div>
+
+            <div class="text-xl font-bold mt-8 mb-4">Your Hand</div>
+            <div id="player-hand" class="player-hand"></div>
+        </div>
+
+        <div id="start-screen">
+            <div id="game-intro" class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-700">Game Rules</h2>
+                <ul class="list-disc list-inside mt-4 text-left mx-auto max-w-md text-gray-600">
+                    <li>The game has 7 tricks, and each player gets 7 cards.</li>
+                    <li>You must play a card that is <strong>greater than or equal to</strong> the highest card in the trick. If you cannot, you must play your <strong>lowest</strong> card.</li>
+                    <li>The player who plays the highest card wins the trick and leads the next one.</li>
+                    <li><strong>Core Rule</strong>: The player who wins the final trick gets cornichon penalties.</li>
+                    <li>The game ends when someone gets more than 5 cornichons.</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold text-gray-700 mt-6 mb-3">Scoring</h3>
+                <p class="text-sm text-gray-600 mb-3"><strong>Getting Cornichons:</strong> The player who wins the 7th trick receives cornichons as penalty. The number depends on the value of your winning card:</p>
+                <div class="text-sm text-gray-600 text-left mx-auto max-w-md">
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div><strong>Card 1:</strong> 0 cornichons</div>
+                        <div><strong>Cards 2-5:</strong> 1 cornichon</div>
+                        <div><strong>Cards 6-9:</strong> 2 cornichons</div>
+                        <div><strong>Cards 10-11:</strong> 3 cornichons</div>
+                        <div><strong>Cards 12-14:</strong> 4 cornichons</div>
+                        <div><strong>Card 15:</strong> 5 cornichons</div>
+                    </div>
+                    <p><strong>Double Penalty:</strong> If someone plays a card with value 1 in the 7th trick, the winner gets double cornichons.</p>
+                </div>
+            </div>
+            <button id="start-btn" class="btn">Start Game</button>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div id="end-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4">
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                <h2 id="end-message" class="text-3xl font-bold mb-4 text-blue-700"></h2>
+                <p id="end-score" class="text-xl mb-6 text-gray-600"></p>
+                <button id="restart-btn" class="btn">Restart Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game State Variables
+        let deck = [];
+        let playerHand = [];
+        let aiHand = [];
+        let playerScore = 0;
+        let aiScore = 0;
+        let trickCount = 0;
+        let currentPlayer = 'player';
+        let trickCards = [];
+        let isPlayerTurn = false;
+        let isGameInProgress = false;
+
+        // DOM Elements
+        const startBtn = document.getElementById('start-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const gameScreen = document.getElementById('game-screen');
+        const startScreen = document.getElementById('start-screen');
+        const playerHandEl = document.getElementById('player-hand');
+        const aiHandEl = document.getElementById('ai-hand');
+        const playerScoreEl = document.getElementById('player-score');
+        const aiScoreEl = document.getElementById('ai-score');
+        const statusMessageEl = document.getElementById('status-message');
+        const playerPlayedCardEl = document.getElementById('player-played-card');
+        const aiPlayedCardEl = document.getElementById('ai-played-card');
+        const endModal = document.getElementById('end-modal');
+        const endMessageEl = document.getElementById('end-message');
+        const endScoreEl = document.getElementById('end-score');
+
+        // Game Logic
+        const CORNICHON_POINTS = {
+            1: 0, 2: 1, 3: 1, 4: 1, 5: 1,
+            6: 2, 7: 2, 8: 2, 9: 2,
+            10: 3, 11: 3,
+            12: 4, 13: 4, 14: 4,
+            15: 5
+        };
+
+        function initializeGame() {
+            isGameInProgress = true;
+            deck = createDeck();
+            playerHand = [];
+            aiHand = [];
+            dealCards();
+            trickCount = 0;
+            trickCards = [];
+            // The player always starts the first trick, so start with their turn
+            currentPlayer = 'player';
+            isPlayerTurn = true;
+            playerScoreEl.textContent = playerScore;
+            aiScoreEl.textContent = aiScore;
+            renderHands();
+            updateStatusMessage("You lead the first trick.");
+        }
+
+        function createDeck() {
+            const newDeck = [];
+            for (let i = 1; i <= 15; i++) {
+                for (let j = 0; j < 4; j++) {
+                    newDeck.push(i);
+                }
+            }
+            return newDeck.sort(() => Math.random() - 0.5);
+        }
+
+        function dealCards() {
+            for (let i = 0; i < 7; i++) {
+                playerHand.push(deck.pop());
+                aiHand.push(deck.pop());
+            }
+            playerHand.sort((a, b) => a - b);
+            aiHand.sort((a, b) => a - b);
+        }
+
+        function renderHands() {
+            // Render player's hand
+            playerHandEl.innerHTML = '';
+            playerHand.forEach(cardValue => {
+                const cardEl = createCardElement(cardValue, 'player');
+                playerHandEl.appendChild(cardEl);
+            });
+
+            // Render AI's hand (hidden cards)
+            aiHandEl.innerHTML = '';
+            for (let i = 0; i < aiHand.length; i++) {
+                const cardEl = createCardElement('?', 'ai');
+                aiHandEl.appendChild(cardEl);
+            }
+        }
+
+        function createCardElement(value, owner) {
+            const cardEl = document.createElement('div');
+            cardEl.className = `card shadow-lg transition-transform hover:scale-105 transform ${owner === 'ai' ? 'bg-gray-400 border-gray-500' : 'bg-green-300 border-green-500'}`;
+            cardEl.textContent = value;
+            cardEl.dataset.value = value;
+            cardEl.dataset.owner = owner;
+            if (owner === 'player') {
+                cardEl.addEventListener('click', () => handlePlayerTurn(value));
+            }
+            return cardEl;
+        }
+
+        function updateStatusMessage(message) {
+            statusMessageEl.textContent = message;
+        }
+
+        function handlePlayerTurn(cardValue) {
+            if (!isPlayerTurn || !isGameInProgress) return;
+
+            const cardIndex = playerHand.indexOf(cardValue);
+            if (cardIndex === -1) {
+                return; // Card not in hand
+            }
+
+            const maxTrickValue = trickCards.length > 0 ? Math.max(...trickCards.map(c => c.value)) : 0;
+            const canPlayHigher = playerHand.some(card => card >= maxTrickValue);
+            
+            // Validate player's move according to the rules
+            if (trickCards.length > 0) {
+                if (canPlayHigher && cardValue < maxTrickValue) {
+                    updateStatusMessage('You must play a card greater than or equal to the highest card in the trick.');
+                    return;
+                }
+                if (!canPlayHigher && cardValue !== Math.min(...playerHand)) {
+                    updateStatusMessage('You must play your lowest card.');
+                    return;
+                }
+            }
+
+            const playedCard = playerHand.splice(cardIndex, 1)[0];
+            trickCards.push({ value: playedCard, owner: 'player' });
+            showPlayedCard(playerPlayedCardEl, playedCard, 'player');
+            renderHands();
+
+            isPlayerTurn = false;
+            if (trickCards.length === 1) {
+                setTimeout(handleAITurn, 1500);
+            } else if (trickCards.length === 2) {
+                setTimeout(checkTrickWinner, 1500);
+            }
+        }
+
+        function handleAITurn() {
+            if (aiHand.length === 0 || !isGameInProgress) return;
+            
+            isPlayerTurn = false; // Prevent player from clicking
+
+            let cardToPlay;
+            const maxTrickValue = trickCards.length > 0 ? Math.max(...trickCards.map(c => c.value)) : 0;
+            const canPlayHigher = aiHand.some(card => card >= maxTrickValue);
+            
+            // AI Logic
+            if (trickCards.length === 0) {
+                // AI is the leader, plays smallest card to save high cards
+                cardToPlay = aiHand[0];
+            } else {
+                if (canPlayHigher) {
+                    // Rule 1: Must play a card >= max value if possible
+                    const playableCards = aiHand.filter(card => card >= maxTrickValue);
+                    cardToPlay = playableCards[0]; // Play the smallest possible winning card
+                } else {
+                    // Rule 2: Must play the smallest card
+                    cardToPlay = aiHand[0];
+                }
+            }
+
+            const cardIndex = aiHand.indexOf(cardToPlay);
+            const playedCard = aiHand.splice(cardIndex, 1)[0];
+            trickCards.push({ value: playedCard, owner: 'ai' });
+            showPlayedCard(aiPlayedCardEl, playedCard, 'ai');
+            renderHands();
+
+            if (trickCards.length === 1) {
+                // AI played first, now it's player's turn
+                setTimeout(() => {
+                    isPlayerTurn = true;
+                    updateStatusMessage('Your turn to play.');
+                }, 1500);
+            } else if (trickCards.length === 2) {
+                // Both played, check winner
+                setTimeout(checkTrickWinner, 1500);
+            }
+        }
+
+        function showPlayedCard(element, value, owner) {
+            element.textContent = value;
+            element.dataset.owner = owner;
+            element.classList.remove('hidden');
+            element.classList.add('played-card');
+            element.classList.remove('bg-green-300', 'border-green-500', 'bg-gray-400', 'border-gray-500');
+            element.classList.add(owner === 'player' ? 'bg-green-300' : 'bg-gray-400');
+        }
+
+        function hidePlayedCards() {
+            playerPlayedCardEl.classList.add('hidden');
+            aiPlayedCardEl.classList.add('hidden');
+            playerPlayedCardEl.classList.remove('played-card');
+            aiPlayedCardEl.classList.remove('played-card');
+        }
+
+        function checkTrickWinner() {
+            if (trickCards.length < 2) return;
+
+            let winningCard;
+            let winner;
+
+            // Determine the winner - only when both players have played
+            const playerCard = trickCards.find(card => card.owner === 'player');
+            const aiCard = trickCards.find(card => card.owner === 'ai');
+
+            // Both players have played, determine winner
+            if (playerCard.value > aiCard.value) {
+                winningCard = playerCard;
+                winner = 'player';
+            } else if (aiCard.value > playerCard.value) {
+                winningCard = aiCard;
+                winner = 'ai';
+            } else {
+                // Tie, the last player to play wins
+                winningCard = trickCards[1];
+                winner = trickCards[1].owner;
+            }
+            
+            updateStatusMessage(`${winner === 'player' ? 'You' : 'AI'} wins this trick.`);
+            trickCount++;
+            
+            if (trickCount === 7) {
+                setTimeout(() => handleEndRound(winner, winningCard), 1500);
+            } else {
+                currentPlayer = winner;
+                isPlayerTurn = (currentPlayer === 'player');
+                setTimeout(() => {
+                    hidePlayedCards();
+                    trickCards = [];
+                    updateStatusMessage(`${currentPlayer === 'player' ? 'You' : 'AI'} starts the next trick.`);
+                    if (!isPlayerTurn) {
+                        setTimeout(handleAITurn, 1000);
+                    }
+                }, 1500);
+            }
+        }
+
+        function handleEndRound(loser, winningCard) {
+            let points = CORNICHON_POINTS[winningCard.value];
+            const hasOne = trickCards.some(card => card.value === 1);
+            if (hasOne) {
+                points *= 2;
+            }
+
+            if (loser === 'player') {
+                playerScore += points;
+                playerScoreEl.textContent = playerScore;
+            } else {
+                aiScore += points;
+                aiScoreEl.textContent = aiScore;
+            }
+
+            updateStatusMessage(`${loser === 'player' ? 'You' : 'AI'} got ${points} cornichons.`);
+
+            setTimeout(() => {
+                hidePlayedCards();
+                checkGameOver();
+            }, 2000);
+        }
+
+        function checkGameOver() {
+            isGameInProgress = false;
+            let endMessage = '';
+            if (playerScore >= 5) {
+                endMessage = 'Game Over! You lose.';
+            } else if (aiScore >= 5) {
+                endMessage = 'Game Over! You win!';
+            } else {
+                endMessage = 'Round over, starting a new round.';
+                setTimeout(() => {
+                    hidePlayedCards();
+                    initializeGame();
+                }, 2000);
+                return;
+            }
+
+            endMessageEl.textContent = endMessage;
+            endScoreEl.textContent = `Final Score: You - ${playerScore} cornichons, AI - ${aiScore} cornichons.`;
+            endModal.classList.remove('hidden');
+        }
+
+        // Event Listeners
+        startBtn.addEventListener('click', () => {
+            startScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            playerScore = 0;
+            aiScore = 0;
+            initializeGame();
+        });
+
+        restartBtn.addEventListener('click', () => {
+            endModal.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
