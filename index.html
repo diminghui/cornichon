@@ -6,51 +6,246 @@
     <title>Five Cornichons</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Cornichons专属黄绿配色系统 */
+        :root {
+            --pickle-green-dark: #2d5016;
+            --pickle-green: #4a7c3a;
+            --pickle-green-light: #6ba854;
+            --pickle-green-pale: #a4d084;
+            --pickle-yellow: #f4e342;
+            --pickle-yellow-light: #f7ec6b;
+            --pickle-yellow-cream: #fdf6a4;
+            --pickle-beige: #f9f3d9;
+            --pickle-gold: #d4af37;
+            --text-dark: #2d3a1f;
+            --text-medium: #4a5d3a;
+            --text-light: #6b7c5b;
+            --shadow-green: rgba(77, 124, 58, 0.3);
+            --shadow-yellow: rgba(244, 227, 66, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            font-family: 'Nunito', sans-serif;
-            background-color: #e0f2fe;
-            color: #1e40af;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-green-light) 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        /* Cornichons主题浮动装饰 */
+        body::before {
+            content: '🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 2.5rem;
+            opacity: 0.06;
+            z-index: -2;
+            animation: pickleFloat 30s infinite linear;
+            pointer-events: none;
+            letter-spacing: 120px;
+            line-height: 100px;
+            transform-origin: center;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: none;
+            z-index: -1;
+        }
+
+        @keyframes pickleFloat {
+            0% { transform: translateY(100vh) rotate(0deg) scale(1); }
+            50% { transform: translateY(0vh) rotate(180deg) scale(1.2); }
+            100% { transform: translateY(-100vh) rotate(360deg) scale(1); }
+        }
+
 
         .container {
             width: 100%;
-            max-width: 900px;
-            background-color: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            max-width: 980px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 243, 217, 0.9) 100%);
+            backdrop-filter: blur(25px) saturate(120%);
+            border-radius: 40px;
+            box-shadow: 
+                0 40px 80px var(--shadow-green),
+                0 20px 40px var(--shadow-yellow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -1px 0 rgba(106, 168, 84, 0.1);
+            padding: 48px;
             text-align: center;
+            position: relative;
+            border: 2px solid rgba(106, 168, 84, 0.2);
+            animation: containerPulse 10s ease-in-out infinite;
+            overflow: hidden;
         }
 
+        @keyframes containerPulse {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                box-shadow: 
+                    0 40px 80px var(--shadow-green),
+                    0 20px 40px var(--shadow-yellow);
+            }
+            50% { 
+                transform: translateY(-8px) scale(1.005);
+                box-shadow: 
+                    0 50px 100px var(--shadow-green),
+                    0 25px 50px var(--shadow-yellow);
+            }
+        }
+
+        /* 玻璃罐子装饰 - 顶部小黄瓜 */
+        .container::before {
+            content: '🥒';
+            position: absolute;
+            top: -25px;
+            right: -20px;
+            font-size: 3.5rem;
+            animation: jarPickleSpin 10s ease-in-out infinite;
+            opacity: 0.9;
+            z-index: 10;
+            filter: drop-shadow(0 6px 12px var(--shadow-green));
+            pointer-events: none;
+        }
+
+        /* 玻璃罐子反光效果 */
+        .container::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: 
+                linear-gradient(145deg, 
+                    rgba(255,255,255,0.4) 0%, 
+                    transparent 30%, 
+                    rgba(255,255,255,0.1) 60%, 
+                    transparent 100%
+                );
+            border-radius: 45px;
+            z-index: 1;
+            pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        @keyframes jarPickleSpin {
+            0% { transform: rotate(-10deg) scale(1); }
+            25% { transform: rotate(5deg) scale(1.1); }
+            50% { transform: rotate(0deg) scale(1.05); }
+            75% { transform: rotate(-5deg) scale(0.95); }
+            100% { transform: rotate(-10deg) scale(1); }
+        }
+
+        /* 内部装饰纹理 */
+        .container > * {
+            position: relative;
+            z-index: 15;
+            pointer-events: auto;
+        }
+
+
         .card {
-            width: 60px;
-            height: 90px;
-            background-color: #b9f7a7;
-            border: 2px solid #34d399;
-            border-radius: 10px;
+            width: 80px;
+            height: 110px;
+            background: 
+                linear-gradient(145deg, var(--pickle-beige) 0%, var(--pickle-yellow-cream) 30%, rgba(255,255,255,0.9) 70%, var(--pickle-green-pale) 100%);
+            border: 3px solid var(--pickle-green);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #166534;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
             user-select: none;
             position: relative;
+            box-shadow: 
+                0 12px 30px var(--shadow-green),
+                0 6px 15px var(--shadow-yellow),
+                inset 0 2px 0 rgba(255, 255, 255, 0.7),
+                inset 0 -2px 0 var(--pickle-green-light);
+            font-family: 'Nunito', sans-serif;
+            transform-style: preserve-3d;
+        }
+
+        /* Cornichons卡片装饰 */
+        .card::before {
+            content: '🥒';
+            position: absolute;
+            top: -8px;
+            right: -6px;
+            font-size: 1rem;
+            opacity: 0.4;
+            animation: cardPickleDance 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(106, 168, 84, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        @keyframes cardPickleDance {
+            0%, 100% { transform: rotate(-10deg) scale(0.8); }
+            50% { transform: rotate(10deg) scale(1.2); }
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-15px) rotateY(15deg) rotateX(10deg) scale(1.08);
+            box-shadow: 
+                0 25px 50px var(--shadow-green),
+                0 12px 25px var(--shadow-yellow),
+                inset 0 3px 0 rgba(255, 255, 255, 0.8);
+            background: 
+                linear-gradient(145deg, var(--pickle-yellow) 0%, var(--pickle-yellow-light) 30%, rgba(255,255,255,0.95) 70%, var(--pickle-green-light) 100%);
+            border-color: var(--pickle-gold);
+        }
+
+        .card:active {
+            transform: translateY(-10px) scale(0.95);
+            animation: cornichonBurst 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes cornichonBurst {
+            0% { transform: translateY(-10px) scale(0.95); }
+            20% { transform: translateY(-20px) scale(1.15); filter: brightness(1.3); }
+            40% { transform: translateY(-12px) scale(1.02); filter: brightness(1.1); }
+            60% { transform: translateY(-18px) scale(1.08); filter: brightness(1.2); }
+            80% { transform: translateY(-14px) scale(1.04); filter: brightness(1.05); }
+            100% { transform: translateY(-15px) scale(1.08); filter: brightness(1); }
         }
 
         .player-hand {
@@ -108,16 +303,78 @@
         }
 
         .btn {
-            background-color: #2563eb;
-            color: #ffffff;
-            padding: 12px 24px;
-            border-radius: 9999px;
-            transition: background-color 0.3s, transform 0.2s;
+            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 50%, var(--pickle-yellow) 100%);
+            color: var(--pickle-beige);
+            padding: 18px 36px;
+            border-radius: 35px;
+            border: 3px solid var(--pickle-gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 12px 30px var(--shadow-green),
+                0 6px 15px var(--shadow-yellow),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 2px var(--pickle-green-dark);
+            z-index: 25;
+            pointer-events: auto;
         }
 
         .btn:hover {
-            background-color: #1d4ed8;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-yellow-light) 50%, var(--pickle-green) 100%);
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 
+                0 20px 40px var(--shadow-green),
+                0 10px 20px var(--shadow-yellow),
+                inset 0 3px 0 rgba(255, 255, 255, 0.6);
+            color: var(--pickle-green-dark);
+            border-color: var(--pickle-green);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-yellow-light) 50%, var(--pickle-gold) 100%);
+            border-color: var(--pickle-green-light);
+            color: var(--pickle-green-dark);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, var(--pickle-green-light) 0%, var(--pickle-yellow-light) 50%, var(--pickle-yellow) 100%);
+            border-color: var(--pickle-yellow);
+            color: var(--pickle-beige);
+        }
+
+        .btn::before {
+            content: '🥒';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            animation: buttonPickleWiggle 2s ease-in-out infinite;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        @keyframes buttonPickleWiggle {
+            0%, 100% { transform: rotate(-5deg) scale(0.8); }
+            50% { transform: rotate(5deg) scale(1.2); }
         }
 
         .disabled-card {
@@ -130,8 +387,79 @@
 <body class="bg-gray-100 text-gray-800">
 
     <div id="game-container" class="container">
-        <h1 class="text-4xl font-bold mb-4 text-blue-800">Five Cornichons</h1>
-        <p class="text-lg text-gray-600 mb-8">A strategy card game where you must avoid winning the last trick.</p>
+        <div class="hero-section" style="margin-bottom: 40px; position: relative;">
+            <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); font-size: 4rem; animation: heroPickleBounce 3s ease-in-out infinite;">🥒</div>
+            <h1 style="
+                font-size: 4.2rem; 
+                font-weight: 800; 
+                font-family: 'Poppins', sans-serif; 
+                background: linear-gradient(135deg, var(--pickle-green-dark) 0%, var(--pickle-green) 30%, var(--pickle-yellow) 70%, var(--pickle-gold) 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 20px;
+                text-align: center;
+                position: relative;
+                animation: titleGlow 4s ease-in-out infinite;
+                text-shadow: 0 0 40px var(--shadow-yellow);
+                letter-spacing: -0.02em;
+            ">
+                🥒 Five Cornichons 🥒
+            </h1>
+            <p style="
+                font-size: 1.6rem; 
+                color: var(--pickle-green-dark); 
+                font-weight: 600; 
+                font-family: 'Nunito', sans-serif;
+                margin-bottom: 12px;
+                text-shadow: 0 2px 4px var(--shadow-green);
+            ">
+                The Ultimate Pickle Strategy Game! 🏆
+            </p>
+            <p style="
+                font-size: 1.2rem; 
+                color: var(--text-medium); 
+                font-weight: 400; 
+                font-style: italic;
+                font-family: 'Poppins', sans-serif;
+                background: linear-gradient(90deg, var(--pickle-beige), var(--pickle-yellow-cream));
+                padding: 12px 24px;
+                border-radius: 25px;
+                border: 2px solid var(--pickle-yellow-light);
+                box-shadow: 0 4px 15px var(--shadow-yellow);
+                margin: 0 auto;
+                max-width: 600px;
+            ">
+                "Master the art of strategic losing! Avoid the final trick in this deliciously challenging card game." 🥒✨
+            </p>
+            <div style="position: absolute; top: -20px; right: 20%; font-size: 2.5rem; animation: heroPickleBounce 3s ease-in-out infinite 1s;">🥒</div>
+            <div style="position: absolute; bottom: -10px; left: 15%; font-size: 2rem; animation: heroPickleBounce 3s ease-in-out infinite 2s;">🥒</div>
+        </div>
+        
+        <style>
+            @keyframes titleGlow {
+                0%, 100% { 
+                    filter: drop-shadow(0 0 20px var(--shadow-green)) drop-shadow(0 0 10px var(--shadow-yellow));
+                    transform: translateY(0px) scale(1);
+                }
+                50% { 
+                    filter: drop-shadow(0 0 30px var(--shadow-green)) drop-shadow(0 0 20px var(--shadow-yellow));
+                    transform: translateY(-5px) scale(1.02);
+                }
+            }
+            @keyframes heroPickleBounce {
+                0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+                33% { transform: translateY(-10px) rotate(10deg) scale(1.1); }
+                66% { transform: translateY(-5px) rotate(-5deg) scale(1.05); }
+            }
+        </style>
+        
+        <style>
+            @keyframes titleFloat {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-8px); }
+            }
+        </style>
 
         <div id="game-screen" class="hidden">
             <div class="score-board">
@@ -184,17 +512,394 @@
                     <p><strong>Double Penalty:</strong> If someone plays a card with value 1 in the 7th trick, the winner gets double cornichons.</p>
                 </div>
             </div>
-            <button id="start-btn" class="btn">Start Game</button>
-        </div>
-
-        <!-- Game Over Modal -->
-        <div id="end-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4">
-            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                <h2 id="end-message" class="text-3xl font-bold mb-4 text-blue-700"></h2>
-                <p id="end-score" class="text-xl mb-6 text-gray-600"></p>
-                <button id="restart-btn" class="btn">Restart Game</button>
+            <div class="action-buttons" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <button id="start-btn" class="btn">Start Game 🎮</button>
+                <button id="share-btn" class="btn btn-secondary">Share Game 💫</button>
             </div>
         </div>
+
+        <!-- 激动人心的游戏结束模态框 -->
+        <div id="end-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
+            <div class="game-over-container" style="
+                background: linear-gradient(135deg, var(--pickle-beige) 0%, var(--pickle-yellow-cream) 50%, var(--pickle-green-pale) 100%);
+                padding: 48px;
+                border-radius: 35px;
+                text-align: center;
+                max-width: 500px;
+                width: 90%;
+                box-shadow: 
+                    0 30px 80px var(--shadow-green),
+                    0 15px 40px var(--shadow-yellow);
+                border: 4px solid var(--pickle-gold);
+                position: relative;
+                animation: modalExplosion 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                overflow: hidden;
+            ">
+                <!-- 背景动画元素 -->
+                <div class="celebration-pickles" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    pointer-events: none;
+                    overflow: hidden;
+                ">
+                    <div style="position: absolute; top: 10%; left: 10%; font-size: 2rem; animation: celebratePickle1 3s ease-in-out infinite;">🥒</div>
+                    <div style="position: absolute; top: 20%; right: 15%; font-size: 1.8rem; animation: celebratePickle2 3s ease-in-out infinite 0.5s;">🥒</div>
+                    <div style="position: absolute; bottom: 15%; left: 20%; font-size: 2.2rem; animation: celebratePickle3 3s ease-in-out infinite 1s;">🥒</div>
+                    <div style="position: absolute; bottom: 25%; right: 10%; font-size: 1.9rem; animation: celebratePickle4 3s ease-in-out infinite 1.5s;">🥒</div>
+                </div>
+                
+                <div id="winner-content" class="winner-section" style="position: relative; z-index: 10;">
+                    <!-- 胜利庆祝动画 -->
+                    <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px;">
+                        <span style="font-size: 2rem; animation: victorySpin 2s linear infinite;">🎊</span>
+                        <span style="font-size: 2rem; animation: victorySpin 2s linear infinite 0.3s;">🎉</span>
+                        <span style="font-size: 2rem; animation: victorySpin 2s linear infinite 0.6s;">✨</span>
+                        <span style="font-size: 2rem; animation: victorySpin 2s linear infinite 0.9s;">🏆</span>
+                        <span style="font-size: 2rem; animation: victorySpin 2s linear infinite 1.2s;">🎊</span>
+                    </div>
+                    
+                    <div style="font-size: 5rem; margin-bottom: 20px; animation: championBounce 1.5s ease-in-out infinite;">🏆</div>
+                    <h2 id="end-message" style="
+                        font-size: 3.2rem;
+                        background: linear-gradient(45deg, var(--pickle-gold), var(--pickle-yellow), var(--pickle-gold));
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        margin-bottom: 18px;
+                        font-weight: 900;
+                        text-shadow: 2px 2px 8px var(--shadow-yellow);
+                        animation: victoryPulse 2s ease-in-out infinite;
+                        font-family: 'Poppins', sans-serif;
+                        letter-spacing: 2px;
+                    ">🎉 CHAMPION! 🎉</h2>
+                    <div style="
+                        font-size: 1.6rem;
+                        color: var(--pickle-green-dark);
+                        margin-bottom: 16px;
+                        font-weight: 700;
+                        animation: celebrateText 3s ease-in-out infinite;
+                    ">You've conquered the Cornichons!</div>
+                    <p id="end-score" style="
+                        font-size: 1.4rem;
+                        margin-bottom: 24px;
+                        color: var(--text-dark);
+                        font-weight: 600;
+                        background: var(--pickle-yellow-cream);
+                        padding: 12px 20px;
+                        border-radius: 20px;
+                        border: 2px solid var(--pickle-green-light);
+                        animation: fadeInUp 1s ease-out 0.5s both;
+                    "></p>
+                    
+                    <!-- 额外的胜利元素 -->
+                    <div style="margin: 20px 0; display: flex; justify-content: center; gap: 20px;">
+                        <span style="font-size: 2.5rem; animation: victoryFloat 3s ease-in-out infinite;">🥇</span>
+                        <span style="font-size: 2.5rem; animation: victoryFloat 3s ease-in-out infinite 0.5s;">🎖️</span>
+                        <span style="font-size: 2.5rem; animation: victoryFloat 3s ease-in-out infinite 1s;">👑</span>
+                    </div>
+                </div>
+                
+                <div id="loser-content" class="loser-section hidden" style="position: relative; z-index: 10;">
+                    <!-- 失败情景装饰 -->
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px;">
+                        <span style="font-size: 1.8rem; animation: defeatSpin 3s ease-in-out infinite;">😰</span>
+                        <span style="font-size: 1.8rem; animation: defeatSpin 3s ease-in-out infinite 0.5s;">🥒</span>
+                        <span style="font-size: 1.8rem; animation: defeatSpin 3s ease-in-out infinite 1s;">😅</span>
+                        <span style="font-size: 1.8rem; animation: defeatSpin 3s ease-in-out infinite 1.5s;">🥒</span>
+                        <span style="font-size: 1.8rem; animation: defeatSpin 3s ease-in-out infinite 2s;">💔</span>
+                    </div>
+                    
+                    <div style="font-size: 5rem; margin-bottom: 20px; animation: pickleShame 2s ease-in-out infinite;">🥒</div>
+                    <h2 style="
+                        font-size: 2.8rem;
+                        background: linear-gradient(45deg, var(--pickle-green-dark), var(--pickle-green), var(--pickle-green-dark));
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        margin-bottom: 18px;
+                        font-weight: 800;
+                        text-shadow: 1px 1px 4px var(--shadow-green);
+                        animation: defeatWobble 2.5s ease-in-out infinite;
+                        font-family: 'Poppins', sans-serif;
+                        letter-spacing: 1px;
+                    ">🥒 PICKLED! 🥒</h2>
+                    <div style="
+                        font-size: 1.5rem;
+                        color: var(--pickle-green-dark);
+                        margin-bottom: 16px;
+                        font-weight: 600;
+                        animation: shameText 3s ease-in-out infinite;
+                    ">Time to eat those Cornichons!</div>
+                    <p style="
+                        font-size: 1.3rem;
+                        margin-bottom: 20px;
+                        color: var(--text-medium);
+                        font-weight: 500;
+                        background: var(--pickle-green-pale);
+                        padding: 16px 24px;
+                        border-radius: 20px;
+                        border: 2px solid var(--pickle-yellow);
+                        animation: fadeInUp 1s ease-out 0.5s both;
+                    ">You got caught with the final trick! 🥒💔</p>
+                    
+                    <!-- 失败惩罚元素 -->
+                    <div style="margin: 20px 0; padding: 16px; background: rgba(77, 124, 58, 0.1); border-radius: 20px; border: 2px solid var(--pickle-green-light);">
+                        <div style="font-size: 1.4rem; color: var(--pickle-green-dark); font-weight: 700; margin-bottom: 8px;">
+                            💀 Punishment Time! 💀
+                        </div>
+                        <div style="font-size: 1.1rem; color: var(--text-medium); animation: pickleEating 2s ease-in-out infinite;">
+                            You must eat 3 extra Cornichons! 🥒🥒🥒
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 16px; margin-top: 24px; justify-content: center; flex-wrap: wrap;">
+                    <button id="restart-btn" class="btn" style="z-index: 15; position: relative; flex: 1; min-width: 160px;">
+                        Play Again! 🎮
+                    </button>
+                    <button id="share-game-btn" class="btn btn-secondary" style="z-index: 15; position: relative; flex: 1; min-width: 160px;">
+                        Share Victory! 🎊
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @keyframes modalExplosion {
+                0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+                50% { transform: scale(1.1) rotate(5deg); opacity: 0.9; }
+                100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            }
+            
+            @keyframes winnerBounce {
+                0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+                50% { transform: translateY(-20px) scale(1.2) rotate(10deg); }
+            }
+            
+            @keyframes loserShake {
+                0%, 100% { transform: translateX(0) rotate(0deg); }
+                25% { transform: translateX(-10px) rotate(-5deg); }
+                75% { transform: translateX(10px) rotate(5deg); }
+            }
+            
+            @keyframes celebratePickle1 {
+                0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+                33% { transform: translateY(-15px) rotate(120deg) scale(1.3); }
+                66% { transform: translateY(-8px) rotate(240deg) scale(0.9); }
+            }
+            
+            @keyframes celebratePickle2 {
+                0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+                50% { transform: translateY(-20px) rotate(180deg) scale(1.4); }
+            }
+            
+            @keyframes celebratePickle3 {
+                0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+                25% { transform: translateY(-10px) rotate(90deg) scale(1.1); }
+                75% { transform: translateY(-5px) rotate(270deg) scale(1.2); }
+            }
+            
+            @keyframes celebratePickle4 {
+                0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+                40% { transform: translateY(-12px) rotate(-90deg) scale(1.2); }
+                80% { transform: translateY(-6px) rotate(-180deg) scale(0.8); }
+            }
+            
+            /* 新的胜利动画 */
+            @keyframes victorySpin {
+                0% { transform: rotate(0deg) translateY(0px) scale(1); }
+                50% { transform: rotate(180deg) translateY(-15px) scale(1.2); }
+                100% { transform: rotate(360deg) translateY(0px) scale(1); }
+            }
+            
+            @keyframes championBounce {
+                0%, 100% { transform: translateY(0px) scale(1); }
+                50% { transform: translateY(-20px) scale(1.15); }
+            }
+            
+            @keyframes victoryPulse {
+                0%, 100% { 
+                    text-shadow: 2px 2px 8px var(--shadow-yellow);
+                    transform: scale(1);
+                }
+                50% { 
+                    text-shadow: 4px 4px 16px var(--shadow-yellow), 0 0 20px var(--pickle-gold);
+                    transform: scale(1.05);
+                }
+            }
+            
+            @keyframes celebrateText {
+                0%, 100% { transform: translateY(0px); color: var(--pickle-green-dark); }
+                50% { transform: translateY(-5px); color: var(--pickle-gold); }
+            }
+            
+            @keyframes victoryFloat {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                33% { transform: translateY(-10px) rotate(5deg); }
+                66% { transform: translateY(-5px) rotate(-5deg); }
+            }
+            
+            /* 新的失败动画 */
+            @keyframes defeatSpin {
+                0%, 100% { transform: rotate(0deg) scale(1); }
+                25% { transform: rotate(-10deg) scale(0.9); }
+                50% { transform: rotate(0deg) scale(1.1); }
+                75% { transform: rotate(10deg) scale(0.95); }
+            }
+            
+            @keyframes pickleShame {
+                0%, 100% { 
+                    transform: scale(1) rotate(0deg);
+                    filter: hue-rotate(0deg);
+                }
+                25% { 
+                    transform: scale(0.9) rotate(-5deg);
+                    filter: hue-rotate(10deg);
+                }
+                50% { 
+                    transform: scale(1.1) rotate(0deg);
+                    filter: hue-rotate(-10deg);
+                }
+                75% { 
+                    transform: scale(0.95) rotate(5deg);
+                    filter: hue-rotate(5deg);
+                }
+            }
+            
+            @keyframes defeatWobble {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: rotate(-2deg) translateX(-3px); }
+                50% { transform: rotate(0deg) translateX(0px); }
+                75% { transform: rotate(2deg) translateX(3px); }
+            }
+            
+            @keyframes shameText {
+                0%, 100% { 
+                    color: var(--pickle-green-dark);
+                    transform: translateY(0px);
+                }
+                50% { 
+                    color: var(--pickle-green);
+                    transform: translateY(-3px);
+                }
+            }
+            
+            @keyframes pickleEating {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); color: var(--pickle-green-dark); }
+            }
+        </style>
+
+        <!-- Share Modal -->
+        <div id="share-modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4 z-50">
+            <div class="share-modal-content" style="
+                background: linear-gradient(135deg, var(--morandi-cream), rgba(255,255,255,0.95));
+                backdrop-filter: blur(20px);
+                padding: 32px;
+                border-radius: 24px;
+                text-align: center;
+                max-width: 400px;
+                width: 90%;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+                border: 1px solid rgba(255,255,255,0.3);
+                animation: modalSlideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            ">
+                <h3 style="
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                    color: var(--text-soft);
+                    margin-bottom: 16px;
+                    font-family: 'Poppins', sans-serif;
+                ">Share Five Cornichons 🌱</h3>
+                <p style="
+                    color: var(--text-muted);
+                    margin-bottom: 24px;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                ">Share this peaceful strategy game with your friends!</p>
+                
+                <div class="share-links" style="display: flex; justify-content: center; gap: 12px; margin-bottom: 24px;">
+                    <a href="#" class="share-link" data-platform="twitter" style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 48px;
+                        height: 48px;
+                        background: var(--morandi-blue);
+                        border-radius: 50%;
+                        text-decoration: none;
+                        font-size: 1.5rem;
+                        transition: all 0.3s ease;
+                        animation: shareIconFloat 3s ease-in-out infinite;
+                    " title="Share on Twitter">🐦</a>
+                    
+                    <a href="#" class="share-link" data-platform="facebook" style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 48px;
+                        height: 48px;
+                        background: var(--morandi-sage);
+                        border-radius: 50%;
+                        text-decoration: none;
+                        font-size: 1.5rem;
+                        transition: all 0.3s ease;
+                        animation: shareIconFloat 3s ease-in-out infinite 0.5s;
+                    " title="Share on Facebook">📘</a>
+                    
+                    <a href="#" class="share-link" data-platform="whatsapp" style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 48px;
+                        height: 48px;
+                        background: var(--morandi-yellow);
+                        border-radius: 50%;
+                        text-decoration: none;
+                        font-size: 1.5rem;
+                        transition: all 0.3s ease;
+                        animation: shareIconFloat 3s ease-in-out infinite 1s;
+                    " title="Share on WhatsApp">💬</a>
+                    
+                    <button id="copy-link-btn" style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 48px;
+                        height: 48px;
+                        background: var(--morandi-pink);
+                        border-radius: 50%;
+                        border: none;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        animation: shareIconFloat 3s ease-in-out infinite 1.5s;
+                    " title="Copy Link">🔗</button>
+                </div>
+                
+                <button id="close-share-modal" class="btn" style="margin-top: 8px;">Close</button>
+            </div>
+        </div>
+
+        <style>
+            @keyframes modalSlideIn {
+                0% { transform: translateY(30px) scale(0.9); opacity: 0; }
+                100% { transform: translateY(0) scale(1); opacity: 1; }
+            }
+            
+            @keyframes shareIconFloat {
+                0%, 100% { transform: translateY(0) scale(1); }
+                50% { transform: translateY(-4px) scale(1.05); }
+            }
+            
+            .share-link:hover, #copy-link-btn:hover {
+                transform: translateY(-6px) scale(1.1);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            }
+        </style>
     </div>
 
     <script>
@@ -213,6 +918,7 @@
         // DOM Elements
         const startBtn = document.getElementById('start-btn');
         const restartBtn = document.getElementById('restart-btn');
+        const shareGameBtn = document.getElementById('share-game-btn');
         const gameScreen = document.getElementById('game-screen');
         const startScreen = document.getElementById('start-screen');
         const playerHandEl = document.getElementById('player-hand');
@@ -465,10 +1171,23 @@
         function checkGameOver() {
             isGameInProgress = false;
             let endMessage = '';
+            const winnerContent = document.getElementById('winner-content');
+            const loserContent = document.getElementById('loser-content');
+            
             if (playerScore >= 5) {
+                // 玩家失败
                 endMessage = 'Game Over! You lose.';
+                winnerContent.classList.add('hidden');
+                loserContent.classList.remove('hidden');
+                shareGameBtn.innerHTML = 'Share Defeat! 💔';
+                shareGameBtn.className = 'btn btn-secondary';
             } else if (aiScore >= 5) {
+                // 玩家获胜
                 endMessage = 'Game Over! You win!';
+                winnerContent.classList.remove('hidden');
+                loserContent.classList.add('hidden');
+                shareGameBtn.innerHTML = 'Share Victory! 🎊';
+                shareGameBtn.className = 'btn btn-secondary';
             } else {
                 endMessage = 'Round over, starting a new round.';
                 setTimeout(() => {
@@ -481,6 +1200,49 @@
             endMessageEl.textContent = endMessage;
             endScoreEl.textContent = `Final Score: You - ${playerScore} cornichons, AI - ${aiScore} cornichons.`;
             endModal.classList.remove('hidden');
+        }
+
+        // Share功能
+        const shareBtn = document.getElementById('share-btn');
+        const shareModal = document.getElementById('share-modal');
+        const closeShareModal = document.getElementById('close-share-modal');
+        const copyLinkBtn = document.getElementById('copy-link-btn');
+        
+        function openShareModal() {
+            shareModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeShareModalFunc() {
+            shareModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function copyToClipboard() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                copyLinkBtn.innerHTML = '✅';
+                copyLinkBtn.style.background = 'var(--morandi-sage)';
+                setTimeout(() => {
+                    copyLinkBtn.innerHTML = '🔗';
+                    copyLinkBtn.style.background = 'var(--morandi-pink)';
+                }, 2000);
+            });
+        }
+        
+        function setupShareLinks() {
+            const gameUrl = window.location.href;
+            const gameTitle = 'Five Cornichons - The Chill Strategy Game';
+            const gameDescription = 'A peaceful card game where you lose to win! Perfect for strategic minds.';
+            
+            document.querySelector('[data-platform="twitter"]').href = 
+                `https://twitter.com/intent/tweet?text=${encodeURIComponent(gameDescription)}&url=${encodeURIComponent(gameUrl)}`;
+            
+            document.querySelector('[data-platform="facebook"]').href = 
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(gameUrl)}`;
+            
+            document.querySelector('[data-platform="whatsapp"]').href = 
+                `https://wa.me/?text=${encodeURIComponent(gameDescription + ' ' + gameUrl)}`;
         }
 
         // Event Listeners
@@ -498,6 +1260,39 @@
             aiScore = 0;
             initializeGame();
         });
+
+        shareGameBtn.addEventListener('click', () => {
+            // 根据游戏结果更新分享模态框内容
+            const shareTitle = document.querySelector('#share-modal h3');
+            const shareDescription = document.querySelector('#share-modal p');
+            
+            if (playerScore >= 5) {
+                // 玩家失败
+                shareTitle.textContent = 'I Got Pickled! 🥒💔';
+                shareDescription.textContent = `I just lost at Five Cornichons with ${playerScore} cornichons! Can you do better than me?`;
+            } else if (aiScore >= 5) {
+                // 玩家获胜
+                shareTitle.textContent = 'I Won Five Cornichons! 🏆🎊';
+                shareDescription.textContent = `I just beat the AI at Five Cornichons! Final score: Me ${playerScore}, AI ${aiScore} cornichons!`;
+            }
+            
+            // 打开分享模态框
+            shareModal.classList.remove('hidden');
+        });
+        
+        shareBtn.addEventListener('click', openShareModal);
+        closeShareModal.addEventListener('click', closeShareModalFunc);
+        copyLinkBtn.addEventListener('click', copyToClipboard);
+        
+        // 点击模态框外部关闭
+        shareModal.addEventListener('click', (e) => {
+            if (e.target === shareModal) {
+                closeShareModalFunc();
+            }
+        });
+        
+        // 初始化分享链接
+        setupShareLinks();
     </script>
 </body>
 </html>
