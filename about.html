@@ -3,7 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Five Cornichons - About</title>
+    <title>About Five Cornichons - Game Overview, Rules & Features | Strategy Card Game</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn about Five Cornichons, the strategic trick-taking card game designed by Friedemann Friese. Discover game rules, features, and why this reverse-winning game is perfect for 2-6 players aged 8+.">
+    <meta name="keywords" content="Five Cornichons about, game rules, card game features, Friedemann Friese, Agurk game, trick-taking game, strategy game rules, Nordic card game">
+    <meta name="author" content="Five Cornichons Game">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About Five Cornichons - Strategic Card Game Overview">
+    <meta property="og:description" content="Discover the unique twist of Five Cornichons - a strategic card game where your goal is to avoid winning the last trick. Learn rules, features & gameplay.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://cornichon.online/about.html">
+    <meta property="og:site_name" content="Five Cornichons">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Five Cornichons - Strategic Card Game Overview">
+    <meta name="twitter:description" content="Learn about this unique strategy game where you avoid winning the last trick. Perfect for 2-6 players!">
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://cornichon.online/about.html">
+    <meta name="theme-color" content="#4a7c3a">
+    <link rel="home" href="https://cornichon.online/">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -47,6 +74,14 @@
             overflow-x: hidden;
         }
 
+        /* 移动端body优化 */
+        @media (max-width: 768px) {
+            body {
+                padding: 80px 12px 12px 12px;
+                justify-content: flex-start;
+            }
+        }
+
         /* Cornichons主题浮动装饰 */
         body::before {
             content: '🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒';
@@ -88,6 +123,26 @@
             border: 2px solid rgba(106, 168, 84, 0.2);
             animation: containerPulse 10s ease-in-out infinite;
             overflow: hidden;
+        }
+
+        /* 移动端容器优化 */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+                margin: 0;
+                padding: 24px 16px;
+                border-radius: 20px;
+                box-shadow: 
+                    0 20px 40px var(--shadow-green),
+                    0 10px 20px var(--shadow-yellow);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 12px;
+                border-radius: 16px;
+            }
         }
 
         @keyframes containerPulse {
@@ -316,24 +371,52 @@
         @media (max-width: 768px) {
             .navbar {
                 position: fixed;
-                top: 15px;
-                left: 15px;
-                right: 15px;
+                top: 10px;
+                left: 10px;
+                right: 10px;
                 transform: none;
-                padding: 10px 16px;
+                padding: 8px 12px;
+                border-radius: 20px;
+                box-shadow: 0 4px 15px var(--shadow-green), 0 2px 8px var(--shadow-yellow);
             }
             
             .nav-links {
-                gap: 12px;
+                gap: 8px;
+                justify-content: space-between;
+                width: 100%;
             }
             
             .nav-link {
-                font-size: 0.9rem;
-                padding: 6px 12px;
+                font-size: 0.8rem;
+                padding: 6px 10px;
+                white-space: nowrap;
             }
             
             .nav-logo {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                gap: 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 6px 10px;
+                top: 8px;
+                left: 8px;
+                right: 8px;
+            }
+            
+            .nav-links {
+                gap: 6px;
+            }
+            
+            .nav-link {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            
+            .nav-logo {
+                font-size: 0.8rem;
             }
         }
 
@@ -377,6 +460,66 @@
             margin: 8px 0;
         }
 
+        /* 移动端功能区域优化 */
+        @media (max-width: 768px) {
+            .feature-section {
+                margin: 20px 0;
+                padding: 16px;
+                border-radius: 16px;
+            }
+
+            .feature-section h3 {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+                gap: 8px;
+            }
+
+            .feature-section h3::before {
+                font-size: 1.2rem;
+            }
+
+            .feature-section p, .feature-section ul {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            .feature-section ul {
+                padding-left: 20px;
+                margin: 12px 0;
+            }
+
+            .feature-section li {
+                margin: 6px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feature-section {
+                margin: 16px 0;
+                padding: 12px;
+                border-radius: 12px;
+            }
+
+            .feature-section h3 {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+                gap: 6px;
+            }
+
+            .feature-section h3::before {
+                font-size: 1rem;
+            }
+
+            .feature-section p, .feature-section ul {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .feature-section ul {
+                padding-left: 16px;
+            }
+        }
+
         .game-info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -398,6 +541,51 @@
             font-size: 1.2rem;
             display: block;
             margin-bottom: 8px;
+        }
+
+        /* 移动端游戏信息网格优化 */
+        @media (max-width: 768px) {
+            .game-info-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+            .info-card {
+                padding: 16px 12px;
+                border-radius: 12px;
+            }
+
+            .info-card strong {
+                font-size: 1rem;
+                margin-bottom: 6px;
+            }
+
+            .info-card {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-info-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin: 16px 0;
+            }
+
+            .info-card {
+                padding: 12px;
+                border-radius: 10px;
+            }
+
+            .info-card strong {
+                font-size: 0.9rem;
+                margin-bottom: 4px;
+            }
+
+            .info-card {
+                font-size: 0.8rem;
+            }
         }
 
         @keyframes sectionPickleBounce {
@@ -435,6 +623,48 @@
             text-shadow: 0 2px 4px var(--shadow-green);
         }
 
+        /* 移动端Hero区域优化 */
+        @media (max-width: 768px) {
+            .hero-section {
+                margin-bottom: 24px;
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem !important;
+                margin-bottom: 16px !important;
+                line-height: 1.1 !important;
+            }
+
+            .hero-section p {
+                font-size: 1.1rem !important;
+                margin-bottom: 10px !important;
+            }
+
+            .hero-section > div:first-child {
+                font-size: 2.5rem !important;
+                top: -20px !important;
+            }
+
+            .hero-section > div:nth-child(5), .hero-section > div:nth-child(6) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 2rem !important;
+                letter-spacing: -0.01em !important;
+            }
+
+            .hero-section p {
+                font-size: 1rem !important;
+            }
+
+            .hero-section > div:first-child {
+                font-size: 2rem !important;
+            }
+        }
+
         @keyframes titleGlow {
             0%, 100% { 
                 filter: drop-shadow(0 0 20px var(--shadow-green)) drop-shadow(0 0 10px var(--shadow-yellow));
@@ -446,23 +676,32 @@
             }
         }
 
-        /* Responsive design */
+        /* 移动端按钮优化 */
         @media (max-width: 768px) {
-            .container {
-                padding: 32px 24px;
-                margin: 16px;
+            .btn {
+                font-size: 1rem !important;
+                padding: 14px 28px !important;
+                border-radius: 25px !important;
+                margin: 8px 4px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                font-size: 0.9rem !important;
+                padding: 12px 24px !important;
+                border-radius: 20px !important;
+                min-width: 200px !important;
+                margin: 4px 0 !important;
+                display: block !important;
+                text-align: center !important;
             }
             
-            .hero-section h1 {
-                font-size: 2.8rem;
-            }
-            
-            .feature-section {
-                padding: 20px 16px;
-            }
-            
-            .game-info-grid {
-                grid-template-columns: 1fr;
+            div[style*="text-align: center; margin-top: 40px;"] {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 8px !important;
             }
         }
     </style>

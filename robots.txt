@@ -1,0 +1,41 @@
+# Five Cornichons - The Chill Strategy Game
+# Robots.txt for SEO optimization
+
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Allow specific search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Disallow crawling of system files and directories
+Disallow: /.git/
+Disallow: /.claude/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /package.json
+Disallow: /package-lock.json
+
+# Allow CSS and JS files for proper rendering
+Allow: /*.css
+Allow: /*.js
+
+# Sitemap location
+Sitemap: https://cornichon.online/sitemap.xml
+
+# Crawl delay (optional - removes load on server)
+# Crawl-delay: 1
+
+# Priority pages for crawlers
+# Homepage: /index.html
+# About: /about.html
