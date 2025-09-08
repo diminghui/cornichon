@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Cornichons - About</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Cornichons专属黄绿配色系统 */
+        :root {
+            --pickle-green-dark: #2d5016;
+            --pickle-green: #4a7c3a;
+            --pickle-green-light: #6ba854;
+            --pickle-green-pale: #a4d084;
+            --pickle-yellow: #f4e342;
+            --pickle-yellow-light: #f7ec6b;
+            --pickle-yellow-cream: #fdf6a4;
+            --pickle-beige: #f9f3d9;
+            --pickle-gold: #d4af37;
+            --text-dark: #2d3a1f;
+            --text-medium: #4a5d3a;
+            --text-light: #6b7c5b;
+            --shadow-green: rgba(77, 124, 58, 0.3);
+            --shadow-yellow: rgba(244, 227, 66, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-green-light) 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Cornichons主题浮动装饰 */
+        body::before {
+            content: '🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒 🥒';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 2.5rem;
+            opacity: 0.06;
+            z-index: -2;
+            animation: pickleFloat 30s infinite linear;
+            pointer-events: none;
+            letter-spacing: 120px;
+            line-height: 100px;
+            transform-origin: center;
+        }
+
+        @keyframes pickleFloat {
+            0% { transform: translateY(100vh) rotate(0deg) scale(1); }
+            50% { transform: translateY(0vh) rotate(180deg) scale(1.2); }
+            100% { transform: translateY(-100vh) rotate(360deg) scale(1); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 243, 217, 0.9) 100%);
+            backdrop-filter: blur(25px) saturate(120%);
+            border-radius: 40px;
+            box-shadow: 
+                0 40px 80px var(--shadow-green),
+                0 20px 40px var(--shadow-yellow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -1px 0 rgba(106, 168, 84, 0.1);
+            padding: 48px;
+            text-align: center;
+            position: relative;
+            border: 2px solid rgba(106, 168, 84, 0.2);
+            animation: containerPulse 10s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        @keyframes containerPulse {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                box-shadow: 
+                    0 40px 80px var(--shadow-green),
+                    0 20px 40px var(--shadow-yellow);
+            }
+            50% { 
+                transform: translateY(-8px) scale(1.005);
+                box-shadow: 
+                    0 50px 100px var(--shadow-green),
+                    0 25px 50px var(--shadow-yellow);
+            }
+        }
+
+        /* 玻璃罐子装饰 - 顶部小黄瓜 */
+        .container::before {
+            content: '🥒';
+            position: absolute;
+            top: -25px;
+            right: -20px;
+            font-size: 3.5rem;
+            animation: jarPickleSpin 10s ease-in-out infinite;
+            opacity: 0.9;
+            z-index: 10;
+            filter: drop-shadow(0 6px 12px var(--shadow-green));
+            pointer-events: none;
+        }
+
+        /* 玻璃罐子反光效果 */
+        .container::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: 
+                linear-gradient(145deg, 
+                    rgba(255,255,255,0.4) 0%, 
+                    transparent 30%, 
+                    rgba(255,255,255,0.1) 60%, 
+                    transparent 100%
+                );
+            border-radius: 45px;
+            z-index: 1;
+            pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        @keyframes jarPickleSpin {
+            0% { transform: rotate(-10deg) scale(1); }
+            25% { transform: rotate(5deg) scale(1.1); }
+            50% { transform: rotate(0deg) scale(1.05); }
+            75% { transform: rotate(-5deg) scale(0.95); }
+            100% { transform: rotate(-10deg) scale(1); }
+        }
+
+        /* 内部装饰纹理 */
+        .container > * {
+            position: relative;
+            z-index: 15;
+            pointer-events: auto;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 50%, var(--pickle-yellow) 100%);
+            color: var(--pickle-beige);
+            padding: 18px 36px;
+            border-radius: 35px;
+            border: 3px solid var(--pickle-gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 12px 30px var(--shadow-green),
+                0 6px 15px var(--shadow-yellow),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 2px var(--pickle-green-dark);
+            z-index: 25;
+            pointer-events: auto;
+            text-decoration: none;
+            display: inline-block;
+            margin: 12px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-yellow-light) 50%, var(--pickle-green) 100%);
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 
+                0 20px 40px var(--shadow-green),
+                0 10px 20px var(--shadow-yellow),
+                inset 0 3px 0 rgba(255, 255, 255, 0.6);
+            color: var(--pickle-green-dark);
+            border-color: var(--pickle-green);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-yellow-light) 50%, var(--pickle-gold) 100%);
+            border-color: var(--pickle-green-light);
+            color: var(--pickle-green-dark);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, var(--pickle-green-light) 0%, var(--pickle-yellow-light) 50%, var(--pickle-yellow) 100%);
+            border-color: var(--pickle-yellow);
+            color: var(--pickle-beige);
+        }
+
+        .btn::before {
+            content: '🥒';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            animation: buttonPickleWiggle 2s ease-in-out infinite;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        @keyframes buttonPickleWiggle {
+            0%, 100% { transform: rotate(-5deg) scale(0.8); }
+            50% { transform: rotate(5deg) scale(1.2); }
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(249, 243, 217, 0.85) 100%);
+            backdrop-filter: blur(15px) saturate(120%);
+            padding: 12px 24px;
+            border-radius: 25px;
+            border: 2px solid rgba(106, 168, 84, 0.2);
+            box-shadow: 0 8px 25px var(--shadow-green), 0 4px 12px var(--shadow-yellow);
+            animation: navbarFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes navbarFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-3px); }
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--pickle-green-dark);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 18px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(135deg, var(--pickle-yellow-light) 0%, var(--pickle-beige) 100%);
+            transform: translateY(-2px) scale(1.05);
+            color: var(--pickle-green-dark);
+            box-shadow: 0 6px 15px rgba(244, 227, 66, 0.4);
+        }
+
+        .nav-link::before {
+            content: '🥒';
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: scale(0) rotate(-30deg);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-link:hover::before {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--pickle-green-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: logoPickleSpin 5s ease-in-out infinite;
+        }
+
+        @keyframes logoPickleSpin {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* 响应式导航栏 */
+        @media (max-width: 768px) {
+            .navbar {
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                transform: none;
+                padding: 10px 16px;
+            }
+            
+            .nav-links {
+                gap: 12px;
+            }
+            
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+            
+            .nav-logo {
+                font-size: 1rem;
+            }
+        }
+
+        .feature-section {
+            text-align: left;
+            margin: 32px 0;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            border: 2px solid rgba(106, 168, 84, 0.15);
+        }
+
+        .feature-section h3 {
+            font-size: 1.8rem;
+            color: var(--pickle-green-dark);
+            margin-bottom: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-section h3::before {
+            content: '🥒';
+            font-size: 1.5rem;
+            animation: sectionPickleBounce 3s ease-in-out infinite;
+        }
+
+        .feature-section p, .feature-section ul {
+            color: var(--text-medium);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .feature-section ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .feature-section li {
+            margin: 8px 0;
+        }
+
+        .game-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, var(--pickle-beige) 0%, rgba(255, 255, 255, 0.9) 100%);
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid var(--pickle-yellow-light);
+            text-align: center;
+            box-shadow: 0 8px 20px var(--shadow-yellow);
+        }
+
+        .info-card strong {
+            color: var(--pickle-green-dark);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        @keyframes sectionPickleBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(10deg); }
+        }
+
+        .hero-section {
+            margin-bottom: 40px; 
+            position: relative;
+        }
+
+        .hero-section h1 {
+            font-size: 3.8rem; 
+            font-weight: 800; 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, var(--pickle-green-dark) 0%, var(--pickle-green) 30%, var(--pickle-yellow) 70%, var(--pickle-gold) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            animation: titleGlow 4s ease-in-out infinite;
+            text-shadow: 0 0 40px var(--shadow-yellow);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-section p {
+            font-size: 1.4rem; 
+            color: var(--text-medium); 
+            font-weight: 500; 
+            font-family: 'Nunito', sans-serif;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px var(--shadow-green);
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 20px var(--shadow-green)) drop-shadow(0 0 10px var(--shadow-yellow));
+                transform: translateY(0px) scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 30px var(--shadow-green)) drop-shadow(0 0 20px var(--shadow-yellow));
+                transform: translateY(-5px) scale(1.02);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 32px 24px;
+                margin: 16px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.8rem;
+            }
+            
+            .feature-section {
+                padding: 20px 16px;
+            }
+            
+            .game-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-logo">🥒 Five Cornichons</a></li>
+            <li><a href="about.html" class="nav-link">About Game</a></li>
+            <li><a href="index.html#share" class="nav-link">Share</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="hero-section">
+            <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); font-size: 4rem; animation: jarPickleSpin 3s ease-in-out infinite;">🥒</div>
+            <h1>About Five Cornichons</h1>
+            <p>The Ultimate Pickle Strategy Game Experience</p>
+            <div style="position: absolute; top: -20px; right: 20%; font-size: 2.5rem; animation: jarPickleSpin 3s ease-in-out infinite 1s;">🥒</div>
+            <div style="position: absolute; bottom: -10px; left: 15%; font-size: 2rem; animation: jarPickleSpin 3s ease-in-out infinite 2s;">🥒</div>
+        </div>
+
+        <div class="feature-section">
+            <h3>Game Overview</h3>
+            <p>5 Cornichons (5 Cucumbers) is a strategic card game based on the trick-taking mechanic, where players take turns playing cards to win each round. However, the unique twist of this game is that your goal is not to win as many tricks as possible, but rather to avoid winning the last trick.</p>
+            <p>This is a modern take on the classic Nordic game "Agurk," designed by the renowned Friedemann Friese. The game is fast-paced, lasting about 25 minutes, and is suitable for 2 to 6 players.</p>
+        </div>
+
+        <div class="feature-section">
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Play Online Instantly:</strong> No downloads or registration required! We offer a free online version, so you can jump in immediately and play with friends or players from around the world. Play whenever and wherever you want.</li>
+                <li><strong>The Fun of Reverse Winning:</strong> Unlike traditional card games, you have to play carefully to avoid becoming the "winner" at the very end. This "reverse" thinking adds a unique layer of strategic depth and tension to the game.</li>
+                <li><strong>Simple Rules, Deep Strategy:</strong> The rules are very simple, and new players can learn them in just a few minutes. However, to truly master the game, you need to manage your hand skillfully, read your opponents' intentions, and decide when to play a strong card to win a trick and when to play a weak one to avoid risk.</li>
+                <li><strong>Portable and Accessible:</strong> The game consists of a deck of numbered cards and comes in a small box, making it perfect to carry on trips or to parties. You can enjoy the fun of the game anytime, anywhere.</li>
+            </ul>
+        </div>
+
+        <div class="feature-section">
+            <h3>How to Play</h3>
+            <ul>
+                <li><strong>Playing a Card:</strong> In each round, a player must play a card that is higher than or equal to the cards already on the table. If a player cannot do so, they must play their lowest card.</li>
+                <li><strong>Winning/Losing a Trick:</strong> The player who plays the highest card in a round wins the trick and takes all the cards from that round. At the end of the game, the player with the most trick cards receives negative points, while others try to have the fewest cards to maintain a low score.</li>
+            </ul>
+        </div>
+
+        <div class="feature-section">
+            <h3>Product Information</h3>
+            <div class="game-info-grid">
+                <div class="info-card">
+                    <strong>Players</strong>
+                    2 - 6
+                </div>
+                <div class="info-card">
+                    <strong>Game Time</strong>
+                    ~25 minutes
+                </div>
+                <div class="info-card">
+                    <strong>Age</strong>
+                    8+
+                </div>
+                <div class="info-card">
+                    <strong>Designer</strong>
+                    Friedemann Friese
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 16px; color: var(--text-medium);">
+                <strong>Languages:</strong> Available in French and Spanish, with numbered cards that are universally understood.<br>
+                <strong>Publishers:</strong> Matagot, 2F-Spiele
+            </p>
+        </div>
+
+        <div class="feature-section">
+            <h3>You'll Love This Game If...</h3>
+            <ul>
+                <li>You enjoy card games but are looking for a unique and challenging twist.</li>
+                <li>You're searching for a fast-paced party game with simple rules and a lot of strategic depth.</li>
+                <li>You want a portable game that you can enjoy with family and friends anytime.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="btn">Play Now! 🎮</a>
+            <a href="index.html#share" class="btn btn-secondary">Share Game 💫</a>
+        </div>
+    </div>
+</body>
+</html>
