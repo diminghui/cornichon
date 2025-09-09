@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinq Cornichons - Le jeu de cartes stratégique ultime de cornichons | Jouez en ligne gratuitement</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Jouez à Cinq Cornichons en ligne gratuitement ! Un jeu de cartes stratégique où vous perdez pour gagner. Maîtrisez l'art d'éviter le dernier pli dans ce jeu délicieusement stimulant à base de cornichons, basé sur le classique nordique Agurk.">
+    <meta name="keywords" content="Cinq Cornichons, jeu de cornichons, jeu de cartes, jeu de stratégie, jeu en ligne, jeu gratuit, Agurk, jeu de plis, jeu nordique, Friedemann Friese">
+    <meta name="author" content="Jeu Cinq Cornichons">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Français">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Cinq Cornichons - Le jeu de stratégie ultime de cornichons">
+    <meta property="og:description" content="Maîtrisez l'art de perdre stratégiquement ! Évitez le dernier pli dans ce jeu de cartes délicieusement stimulant. Jouez en ligne gratuitement - aucun téléchargement requis !">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cornichon.online/fr/">
+    <meta property="og:site_name" content="Cinq Cornichons">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cinq Cornichons - Le jeu de stratégie ultime de cornichons">
+    <meta name="twitter:description" content="Maîtrisez l'art de perdre stratégiquement ! Jouez à ce jeu de cartes stimulant à base de cornichons en ligne gratuitement.">
+    
+    <!-- hreflang tags -->
+    <link rel="alternate" hreflang="en" href="https://cornichon.online/" />
+    <link rel="alternate" hreflang="de" href="https://cornichon.online/de/" />
+    <link rel="alternate" hreflang="fr" href="https://cornichon.online/fr/" />
+    <link rel="alternate" hreflang="x-default" href="https://cornichon.online/" />
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://cornichon.online/fr/">
+    <meta name="theme-color" content="#4a7c3a">
+    <meta name="application-name" content="Cinq Cornichons">
+    <meta name="apple-mobile-web-app-title" content="Cinq Cornichons">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5NGEFM2BJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-X5NGEFM2BJ');
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Cornichons专属黄绿配色系统 */
+        :root {
+            --pickle-green-dark: #2d5016;
+            --pickle-green: #4a7c3a;
+            --pickle-green-light: #6ba854;
+            --pickle-green-pale: #a4d084;
+            --pickle-yellow: #f4e342;
+            --pickle-yellow-light: #f7ec6b;
+            --pickle-yellow-cream: #fdf6a4;
+            --pickle-beige: #f9f3d9;
+            --pickle-gold: #d4af37;
+            --text-dark: #2d3a1f;
+            --text-medium: #4a5d3a;
+            --text-light: #6b7c5b;
+            --shadow-light: rgba(45, 80, 22, 0.1);
+            --shadow-medium: rgba(45, 80, 22, 0.2);
+            --shadow-strong: rgba(45, 80, 22, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, var(--pickle-beige) 0%, var(--pickle-yellow-cream) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .game-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--pickle-green-dark);
+            text-shadow: 2px 2px 4px var(--shadow-light);
+        }
+
+        .pickle-button {
+            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pickle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-strong);
+            background: linear-gradient(135deg, var(--pickle-green-light) 0%, var(--pickle-green) 100%);
+        }
+
+        .pickle-button:active {
+            transform: translateY(0);
+        }
+
+        .pickle-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .pickle-button:hover::before {
+            left: 100%;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 30px var(--shadow-light);
+            border: 2px solid var(--pickle-green-pale);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-medium);
+            border-color: var(--pickle-green-light);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 2px 4px var(--shadow-light));
+        }
+
+        .nav-link {
+            color: var(--pickle-green-dark);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background: var(--pickle-green-pale);
+            color: var(--pickle-green-dark);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: var(--pickle-green);
+            color: white;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: 25px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: var(--pickle-green);
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--pickle-green-pale);
+            color: var(--pickle-green-dark);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .bouncing {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .slide-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .fade-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.03) 10px,
+                rgba(255,255,255,0.03) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-screenshot {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px var(--shadow-strong);
+            border: 3px solid var(--pickle-gold);
+            margin: 30px auto;
+            display: block;
+        }
+
+        .rules-section {
+            padding: 40px 20px;
+            background: white;
+        }
+
+        .rules-card {
+            background: linear-gradient(135deg, var(--pickle-beige) 0%, var(--pickle-yellow-cream) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 8px 30px var(--shadow-light);
+            border: 2px solid var(--pickle-green-pale);
+        }
+
+        .rules-title {
+            color: var(--pickle-green-dark);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .rules-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rules-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--pickle-green-pale);
+            color: var(--text-medium);
+            font-size: 1.1rem;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list li::before {
+            content: '🥒';
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 30px var(--shadow-light);
+            border: 2px solid var(--pickle-green-pale);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-medium);
+            border-color: var(--pickle-green-light);
+        }
+
+        .cta-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 100%);
+            color: white;
+        }
+
+        .footer {
+            background: var(--pickle-green-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 15px;
+            }
+            
+            .game-title {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px 15px;
+            }
+            
+            .rules-card {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
+            
+            .lang-btn {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="window.location.href='/'">EN</button>
+        <button class="lang-btn" onclick="window.location.href='/de/'">DE</button>
+        <button class="lang-btn active" onclick="window.location.href='/fr/'">FR</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="game-title text-4xl md:text-6xl mb-6 floating">
+                🥒 Cinq Cornichons 🥒
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 slide-left">
+                Le jeu de cartes stratégique ultime de cornichons
+            </p>
+            <p class="text-lg md:text-xl mb-8 slide-right max-w-3xl mx-auto">
+                Un jeu de cartes stratégique où vous perdez pour gagner ! Maîtrisez l'art d'éviter le dernier pli dans ce jeu délicieusement stimulant.
+            </p>
+            <div class="fade-up">
+                <button class="pickle-button bouncing" onclick="startGame()">
+                    🎮 Jouer maintenant
+                </button>
+                <button class="pickle-button ml-4" onclick="showRules()" style="background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-yellow-light) 100%); color: var(--pickle-green-dark);">
+                    📖 Règles du jeu
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Screenshot -->
+    <section class="py-12 px-4 bg-white">
+        <img src="https://via.placeholder.com/800x600/4a7c3a/ffffff?text=Five+Cornichons+Game" 
+             alt="Capture d'écran du jeu Cinq Cornichons" 
+             class="game-screenshot">
+    </section>
+
+    <!-- Quick Rules -->
+    <section class="rules-section">
+        <div class="rules-card">
+            <h2 class="rules-title">🎯 Comment jouer</h2>
+            <ul class="rules-list">
+                <li><strong>Objectif :</strong> Évitez de gagner le dernier pli - vous perdez pour gagner !</li>
+                <li><strong>Joueurs :</strong> 2-6 joueurs à partir de 8 ans</li>
+                <li><strong>Durée :</strong> 15-30 minutes par partie</li>
+                <li><strong>Stratégie :</strong> Utilisez vos cartes judicieusement pour éviter le dernier pli</li>
+                <li><strong>Gagnant :</strong> Le joueur avec le moins de points gagne</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🎴</div>
+            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Gameplay stratégique</h3>
+            <p style="color: var(--text-medium);">Anticipez et planifiez vos coups attentivement. Chaque décision compte !</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Action multijoueur</h3>
+            <p style="color: var(--text-medium);">Parfait pour 2-6 joueurs. Idéal pour les soirées en famille ou entre amis.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Parties rapides</h3>
+            <p style="color: var(--text-medium);">Chaque partie ne dure que 15-30 minutes. Parfait pour un amusement rapide.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Compétitif</h3>
+            <p style="color: var(--text-medium);">Maîtrisez la stratégie et dominez vos amis dans ce jeu unique.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Design magnifique</h3>
+            <p style="color: var(--text-medium);">Profitez du thème attrayant des cornichons et des graphiques de haute qualité.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Sur tous les appareils</h3>
+            <p style="color: var(--text-medium);">Jouez sur votre ordinateur, tablette ou smartphone. Aucun téléchargement requis !</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Prêt pour l'aventure cornichon ?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+            Rejoignez une communauté grandissante de joueurs qui adorent ce défi stratégique unique !
+        </p>
+        <button class="pickle-button bouncing" onclick="startGame()">
+            🎮 Jouer maintenant
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Cinq Cornichons. Conçu par Friedemann Friese. Tous droits réservés.</p>
+        <div class="mt-4">
+            <a href="/fr/about.html" class="nav-link mx-2">À propos</a>
+            <a href="/fr/about.html#contact" class="nav-link mx-2">Contact</a>
+            <a href="/fr/about.html#privacy" class="nav-link mx-2">Confidentialité</a>
+        </div>
+    </footer>
+
+    <script>
+        function startGame() {
+            alert('Le jeu sera bientôt disponible ! Revenez nous voir plus tard.');
+        }
+
+        function showRules() {
+            window.location.href = '/fr/about.html';
+        }
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

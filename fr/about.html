@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos de Cinq Cornichons - Aperçu du jeu, règles et fonctionnalités | Jeu de cartes stratégique</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Découvrez Cinq Cornichons, le jeu de cartes stratégique de levée de Friedemann Friese. Explorez les règles du jeu, les fonctionnalités et pourquoi ce jeu de perte est parfait pour 2-6 joueurs à partir de 8+.">
+    <meta name="keywords" content="Cinq Cornichons à propos, règles du jeu, fonctionnalités du jeu de cartes, Friedemann Friese, jeu Agurk, jeu de levée, règles du jeu de stratégie, jeu de cartes nordique">
+    <meta name="author" content="Jeu Cinq Cornichons">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Français">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="À propos de Cinq Cornichons - Aperçu du jeu de cartes stratégique">
+    <meta property="og:description" content="Découvrez la tournure unique de Cinq Cornichons - un jeu de cartes stratégique où votre objectif est d'éviter la dernière levée. Apprenez les règles, les fonctionnalités et le gameplay.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://cornichon.online/fr/about.html">
+    <meta property="og:site_name" content="Cinq Cornichons">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="À propos de Cinq Cornichons - Aperçu du jeu de cartes stratégique">
+    <meta name="twitter:description" content="Découvrez ce jeu de stratégie unique où vous devez éviter la dernière levée. Parfait pour 2-6 joueurs !">
+    
+    <!-- hreflang tags -->
+    <link rel="alternate" hreflang="en" href="https://cornichon.online/about.html" />
+    <link rel="alternate" hreflang="de" href="https://cornichon.online/de/about.html" />
+    <link rel="alternate" hreflang="fr" href="https://cornichon.online/fr/about.html" />
+    <link rel="alternate" hreflang="x-default" href="https://cornichon.online/about.html" />
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://cornichon.online/fr/about.html">
+    <link rel="home" href="https://cornichon.online/fr/">
+    <meta name="theme-color" content="#4a7c3a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5NGEFM2BJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-X5NGEFM2BJ');
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Cornichons专属黄绿配色系统 */
+        :root {
+            --pickle-green-dark: #2d5016;
+            --pickle-green: #4a7c3a;
+            --pickle-green-light: #6ba854;
+            --pickle-green-pale: #a4d084;
+            --pickle-yellow: #f4e342;
+            --pickle-yellow-light: #f7ec6b;
+            --pickle-yellow-cream: #fdf6a4;
+            --pickle-beige: #f9f3d9;
+            --pickle-gold: #d4af37;
+            --text-dark: #2d3a1f;
+            --text-medium: #4a5d3a;
+            --text-light: #6b7c5b;
+            --shadow-light: rgba(45, 80, 22, 0.1);
+            --shadow-medium: rgba(45, 80, 22, 0.2);
+            --shadow-strong: rgba(45, 80, 22, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, var(--pickle-beige) 0%, var(--pickle-yellow-cream) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .game-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--pickle-green-dark);
+            text-shadow: 2px 2px 4px var(--shadow-light);
+        }
+
+        .pickle-button {
+            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pickle-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-strong);
+            background: linear-gradient(135deg, var(--pickle-green-light) 0%, var(--pickle-green) 100%);
+        }
+
+        .pickle-button:active {
+            transform: translateY(0);
+        }
+
+        .pickle-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .pickle-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-link {
+            color: var(--pickle-green-dark);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background: var(--pickle-green-pale);
+            color: var(--pickle-green-dark);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: var(--pickle-green);
+            color: white;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: 25px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: var(--pickle-green);
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--pickle-green-pale);
+            color: var(--pickle-green-dark);
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 1000px;
+            box-shadow: 0 8px 30px var(--shadow-light);
+            border: 2px solid var(--pickle-green-pale);
+        }
+
+        .section-title {
+            color: var(--pickle-green-dark);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--pickle-green-pale);
+            color: var(--text-medium);
+            font-size: 1.1rem;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: '🥒';
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .rule-card {
+            background: linear-gradient(135deg, var(--pickle-beige) 0%, var(--pickle-yellow-cream) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px var(--shadow-light);
+            border: 2px solid var(--pickle-green-pale);
+            transition: all 0.3s ease;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-medium);
+            border-color: var(--pickle-green-light);
+        }
+
+        .rule-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pickle-green);
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer {
+            background: var(--pickle-green-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .content-section {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+            }
+            
+            .lang-btn {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="window.location.href='/about.html'">EN</button>
+        <button class="lang-btn" onclick="window.location.href='/de/about.html'">DE</button>
+        <button class="lang-btn active" onclick="window.location.href='/fr/about.html'">FR</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="/fr/" class="nav-link">🏠 Accueil</a>
+                <a href="/fr/about.html" class="nav-link active">📖 À propos</a>
+                <a href="/fr/" class="nav-link">🎮 Jouer</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-4 text-center">
+        <h1 class="game-title text-4xl md:text-5xl mb-6 fade-up">
+            🥒 À propos de Cinq Cornichons 🥒
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto fade-up" style="color: var(--text-medium);">
+            Découvrez le monde fascinant du jeu de cartes stratégique où perdre devient gagner
+        </p>
+        <div class="fade-up">
+            <button class="pickle-button" onclick="window.location.href='/fr/'">
+                🎮 Jouer maintenant
+            </button>
+        </div>
+    </section>
+
+    <!-- Game Overview -->
+    <section class="content-section fade-up">
+        <h2 class="section-title">🎯 Aperçu du jeu</h2>
+        <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
+            Cinq Cornichons est un jeu de cartes stratégique innovant conçu par le célèbre auteur de jeux Friedemann Friese. Basé sur le jeu nordique classique Agurk, ce jeu apporte une tournure unique : votre objectif est d'éviter la dernière levée au lieu de la gagner.
+        </p>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-number">2-6</div>
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.5rem; margin-bottom: 10px;">Joueurs</h3>
+                <p style="color: var(--text-medium);">Parfait pour les petits groupes et les familles</p>
+            </div>
+            <div class="rule-card">
+                <div class="rule-number">8+</div>
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.5rem; margin-bottom: 10px;">Âge</h3>
+                <p style="color: var(--text-medium);">Facile à apprendre, difficile à maîtriser</p>
+            </div>
+            <div class="rule-card">
+                <div class="rule-number">15-30</div>
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.5rem; margin-bottom: 10px;">Minutes</h3>
+                <p style="color: var(--text-medium);">Parties rapides pour un plaisir instantané</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Rules -->
+    <section class="content-section fade-up">
+        <h2 class="section-title">📋 Règles du jeu</h2>
+        <ul class="feature-list">
+            <li><strong>Objectif du jeu :</strong> Évitez de gagner la dernière levée de chaque manche. Le joueur avec le moins de points à la fin gagne !</li>
+            <li><strong>Préparation du jeu :</strong> Chaque joueur reçoit 7 cartes. Les cartes restantes forment la pioche.</li>
+            <li><strong>Déroulement du jeu :</strong> Les joueurs doivent jouer une carte de la même valeur ou de la même couleur que la dernière carte jouée.</li>
+            <li><strong>Élément stratégique :</strong> Planifiez vos coups à l'avance pour ne plus avoir de cartes en main à la fin de la manche.</li>
+            <li><strong>Attribution des points :</strong> Le joueur qui fait la dernière levée reçoit des points basés sur les cartes restantes des autres joueurs.</li>
+            <li><strong>Condition de victoire :</strong> Le jeu se termine quand un joueur atteint un certain nombre de points. Le joueur avec le moins de points gagne !</li>
+        </ul>
+    </section>
+
+    <!-- Key Features -->
+    <section class="content-section fade-up">
+        <h2 class="section-title">✨ Caractéristiques principales</h2>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.5rem; margin-bottom: 15px;">🎯 Mécanique unique</h3>
+                <p style="color: var(--text-medium);">Le concept "perdre pour gagner" crée une dynamique stratégique entièrement nouvelle</p>
+            </div>
+            <div class="rule-card">
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.5rem; margin-bottom: 15px;">🎨 Design de haute qualité</h3>
+                <p style="color: var(--text-medium);">Magnifiques illustrations et un thème attrayant de cornichons</p>
+            </div>
+            <div class="rule-card">
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.5rem; margin-bottom: 15px;">🏆 Gameplay profond</h3>
+                <p style="color: var(--text-medium);">Règles simples mais décisions stratégiques complexes</p>
+            </div>
+            <div class="rule-card">
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.5rem; margin-bottom: 15px;">👥 Plaisir social</h3>
+                <p style="color: var(--text-medium);">Parfait pour les soirées entre amis et en famille</p>
+            </div>
+            <div class="rule-card">
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.5rem; margin-bottom: 15px;">⚡ Parties rapides</h3>
+                <p style="color: var(--text-medium);">Pas de parties interminables - plaisir de jeu instantané garanti</p>
+            </div>
+            <div class="rule-card">
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.5rem; margin-bottom: 15px;">🎲 Rejouabilité</h3>
+                <p style="color: var(--text-medium);">Chaque partie est unique grâce à la mécanique de jeu dynamique</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About the Designer -->
+    <section class="content-section fade-up">
+        <h2 class="section-title">👨‍🎨 À propos du concepteur</h2>
+        <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
+            Friedemann Friese est un auteur de jeux allemand primé, connu pour ses jeux de société et de cartes innovants et divertissants. Avec un talent pour créer des mécaniques de jeu uniques, il a développé avec Cinq Cornichons un chef-d'œuvre des jeux stratégiques.
+        </p>
+        <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.6;">
+            L'inspiration pour Cinq Cornichons vient du jeu traditionnel nordique Agurk, que Friese a réinterprété avec son humour caractéristique et son amour pour les concepts de jeu non conventionnels.
+        </p>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="content-section fade-up" style="background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 100%); color: white;">
+        <h2 class="section-title" style="color: white;">Prêt pour le défi ?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+            Plongez dans le monde fascinant de Cinq Cornichons et découvrez pourquoi perdre peut être la meilleure stratégie !
+        </p>
+        <button class="pickle-button" onclick="window.location.href='/fr/'" style="background: white; color: var(--pickle-green-dark);">
+            🎮 Jouer maintenant
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Cinq Cornichons. Conçu par Friedemann Friese. Tous droits réservés.</p>
+        <div class="mt-4">
+            <a href="/fr/" class="nav-link mx-2">Accueil</a>
+            <a href="#contact" class="nav-link mx-2">Contact</a>
+            <a href="#privacy" class="nav-link mx-2">Confidentialité</a>
+            <a href="#legal" class="nav-link mx-2">Mentions légales</a>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

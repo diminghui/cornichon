@@ -25,6 +25,12 @@
     <meta name="twitter:title" content="Five Cornichons - The Ultimate Pickle Strategy Game">
     <meta name="twitter:description" content="Master the art of strategic losing! Play this challenging pickle-themed card game online free.">
     
+    <!-- hreflang tags -->
+    <link rel="alternate" hreflang="en" href="https://cornichon.online/" />
+    <link rel="alternate" hreflang="de" href="https://cornichon.online/de/" />
+    <link rel="alternate" hreflang="fr" href="https://cornichon.online/fr/" />
+    <link rel="alternate" hreflang="x-default" href="https://cornichon.online/" />
+    
     <!-- Additional SEO -->
     <link rel="canonical" href="https://cornichon.online/">
     <meta name="theme-color" content="#4a7c3a">
@@ -627,6 +633,40 @@
             50% { transform: translateX(-50%) translateY(-3px); }
         }
 
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: 25px;
+            padding: 8px 16px;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: var(--pickle-green);
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--pickle-green-pale);
+            color: var(--pickle-green-dark);
+        }
+
         .nav-links {
             display: flex;
             align-items: center;
@@ -740,6 +780,13 @@
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" onclick="window.location.href='/'">EN</button>
+        <button class="lang-btn" onclick="window.location.href='/de/'">DE</button>
+        <button class="lang-btn" onclick="window.location.href='/fr/'">FR</button>
+    </div>
+
     <!-- 导航栏 -->
     <nav class="navbar">
         <ul class="nav-links">
