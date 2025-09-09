@@ -70,6 +70,8 @@
             --shadow-light: rgba(45, 80, 22, 0.1);
             --shadow-medium: rgba(45, 80, 22, 0.2);
             --shadow-strong: rgba(45, 80, 22, 0.3);
+            --shadow-green: rgba(74, 124, 58, 0.3);
+            --shadow-yellow: rgba(244, 227, 66, 0.3);
         }
 
         * {
@@ -209,223 +211,178 @@
             color: var(--pickle-green-dark);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .bouncing {
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .slide-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        .slide-right {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        .fade-up {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero-section {
-            padding: 60px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255,255,255,0.03) 10px,
-                rgba(255,255,255,0.03) 20px
-            );
-            animation: slide 20s linear infinite;
-        }
-
-        @keyframes slide {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .game-screenshot {
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 15px 50px var(--shadow-strong);
-            border: 3px solid var(--pickle-gold);
-            margin: 30px auto;
-            display: block;
-        }
-
-        .rules-section {
-            padding: 40px 20px;
+        /* Game-specific styles */
+        .navbar {
             background: white;
-        }
-
-        .rules-card {
-            background: linear-gradient(135deg, var(--pickle-beige) 0%, var(--pickle-yellow-cream) 100%);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px auto;
-            max-width: 800px;
+            padding: 15px 20px;
+            border-radius: 25px;
             box-shadow: 0 8px 30px var(--shadow-light);
-            border: 2px solid var(--pickle-green-pale);
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            backdrop-filter: blur(15px) saturate(120%);
+            animation: navbarFloat 8s ease-in-out infinite;
         }
 
-        .rules-title {
-            color: var(--pickle-green-dark);
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
+        @keyframes navbarFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0px); }
+            50% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        .rules-list {
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
             list-style: none;
-            padding: 0;
         }
 
-        .rules-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--pickle-green-pale);
-            color: var(--text-medium);
-            font-size: 1.1rem;
-        }
-
-        .rules-list li:last-child {
-            border-bottom: none;
-        }
-
-        .rules-list li::before {
-            content: '🥒';
-            margin-right: 10px;
+        .nav-logo {
             font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--pickle-green-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px 20px;
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .feature-card {
+        .btn {
+            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-strong);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-yellow-light) 100%);
+            color: var(--pickle-green-dark);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .player-hand {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 8px 30px var(--shadow-light);
             border: 2px solid var(--pickle-green-pale);
+            border-radius: 10px;
+            padding: 10px;
+            min-width: 60px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--pickle-green-dark);
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .feature-card:hover {
+        .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px var(--shadow-medium);
             border-color: var(--pickle-green-light);
+            box-shadow: 0 5px 15px var(--shadow-medium);
         }
 
-        .cta-section {
-            padding: 60px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 100%);
-            color: white;
+        .card.played-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
         }
 
-        .footer {
-            background: var(--pickle-green-dark);
-            color: white;
+        .played-card-container {
+            position: relative;
+            height: 100px;
+            margin: 20px 0;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            margin: 20px 0;
+            border: 2px solid var(--pickle-green-pale);
+        }
+
+        .cornichon-icon {
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+
+        .game-rules {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            border: 2px solid var(--pickle-green-pale);
+        }
+
+        .game-info {
+            background: var(--pickle-yellow-cream);
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid var(--pickle-yellow-light);
             text-align: center;
-            padding: 30px 20px;
         }
 
         @media (max-width: 768px) {
-            .hero-section {
-                padding: 40px 15px;
+            .navbar {
+                padding: 10px 15px;
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                transform: none;
             }
             
-            .game-title {
-                font-size: 2.5rem;
+            .nav-links {
+                gap: 15px;
             }
             
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 20px 15px;
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 6px 12px;
             }
             
-            .rules-card {
-                margin: 15px;
-                padding: 20px;
+            .nav-logo {
+                font-size: 1rem;
             }
             
             .language-switcher {
-                top: 10px;
-                right: 10px;
+                top: 15px;
+                right: 15px;
                 padding: 6px 12px;
             }
             
@@ -434,9 +391,31 @@
                 font-size: 12px;
             }
         }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 6px 10px;
+                top: 8px;
+                left: 8px;
+                right: 8px;
+            }
+            
+            .nav-links {
+                gap: 6px;
+            }
+            
+            .nav-link {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            
+            .nav-logo {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
     <!-- Language Switcher -->
     <div class="language-switcher">
         <button class="lang-btn" onclick="window.location.href='/'">EN</button>
@@ -444,145 +423,756 @@
         <button class="lang-btn active" onclick="window.location.href='/fr/'">FR</button>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="game-title text-4xl md:text-6xl mb-6 floating">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="/fr/" class="nav-logo">🥒 Cinq Cornichons</a></li>
+            <li><a href="/fr/about.html" class="nav-link">À propos</a></li>
+            <li><a href="#share" class="nav-link" id="nav-share">Partager</a></li>
+        </ul>
+    </nav>
+
+    <div id="game-container" class="container">
+        <div class="hero-section" style="margin-bottom: 40px; position: relative;">
+            <div class="hero-pickle-top" style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); font-size: 4rem; animation: heroPickleBounce 3s ease-in-out infinite;">🥒</div>
+            <h1 class="hero-title" style="
+                font-size: 4.2rem; 
+                font-weight: 800; 
+                font-family: 'Poppins', sans-serif; 
+                background: linear-gradient(135deg, var(--pickle-green-dark) 0%, var(--pickle-green) 30%, var(--pickle-yellow) 70%, var(--pickle-gold) 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 20px;
+                text-align: center;
+                position: relative;
+                animation: titleGlow 4s ease-in-out infinite;
+                text-shadow: 0 0 40px var(--shadow-yellow);
+                letter-spacing: -0.02em;
+            ">
                 🥒 Cinq Cornichons 🥒
             </h1>
-            <p class="text-xl md:text-2xl mb-8 slide-left">
-                Le jeu de cartes stratégique ultime de cornichons
+            <p class="hero-subtitle" style="
+                font-size: 1.6rem; 
+                color: var(--pickle-green-dark); 
+                font-weight: 600; 
+                font-family: 'Nunito', sans-serif;
+                margin-bottom: 12px;
+                text-shadow: 0 2px 4px var(--shadow-green);
+            ">
+                Le jeu de stratégie ultime de cornichons ! 🏆
             </p>
-            <p class="text-lg md:text-xl mb-8 slide-right max-w-3xl mx-auto">
-                Un jeu de cartes stratégique où vous perdez pour gagner ! Maîtrisez l'art d'éviter le dernier pli dans ce jeu délicieusement stimulant.
+            <p class="hero-description" style="
+                font-size: 1.2rem; 
+                color: var(--text-medium); 
+                font-weight: 400; 
+                font-style: italic;
+                font-family: 'Poppins', sans-serif;
+                background: linear-gradient(90deg, var(--pickle-beige), var(--pickle-yellow-cream));
+                padding: 12px 24px;
+                border-radius: 25px;
+                border: 2px solid var(--pickle-yellow-light);
+                box-shadow: 0 4px 15px var(--shadow-yellow);
+                margin: 0 auto;
+                max-width: 600px;
+            ">
+                "Maîtrisez l'art de perdre stratégiquement ! Évitez le dernier pli dans ce jeu de cartes délicieusement stimulant." 🥒✨
             </p>
-            <div class="fade-up">
-                <button class="pickle-button bouncing" onclick="startGame()">
-                    🎮 Jouer maintenant
-                </button>
-                <button class="pickle-button ml-4" onclick="showRules()" style="background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-yellow-light) 100%); color: var(--pickle-green-dark);">
-                    📖 Règles du jeu
-                </button>
+            <div class="hero-pickle-right" style="position: absolute; top: -20px; right: 20%; font-size: 2.5rem; animation: heroPickleBounce 3s ease-in-out infinite 1s;">🥒</div>
+            <div class="hero-pickle-left" style="position: absolute; bottom: -10px; left: 15%; font-size: 2rem; animation: heroPickleBounce 3s ease-in-out infinite 2s;">🥒</div>
+        </div>
+        
+        <style>
+            @keyframes titleGlow {
+                0%, 100% { 
+                    filter: drop-shadow(0 0 20px var(--shadow-green)) drop-shadow(0 0 10px var(--shadow-yellow));
+                    transform: translateY(0px) scale(1);
+                }
+                50% { 
+                    filter: drop-shadow(0 0 30px var(--shadow-green)) drop-shadow(0 0 20px var(--shadow-yellow));
+                    transform: translateY(-5px) scale(1.02);
+                }
+            }
+            @keyframes heroPickleBounce {
+                0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+                33% { transform: translateY(-10px) rotate(10deg) scale(1.1); }
+                66% { transform: translateY(-5px) rotate(-5deg) scale(1.05); }
+            }
+        </style>
+        
+        <div id="game-screen" class="hidden">
+            <div class="score-board">
+                <div class="player-score">
+                    <span class="cornichon-icon">🥒</span>
+                    <span>Vous: <span id="player-score">0</span></span>
+                </div>
+                <div class="ai-score">
+                    <span class="cornichon-icon">🥒</span>
+                    <span>IA: <span id="ai-score">0</span></span>
+                </div>
+            </div>
+
+            <div class="text-xl font-bold mt-8 mb-4">Main de l'IA</div>
+            <div id="ai-hand" class="player-hand"></div>
+
+            <div class="played-card-container">
+                <div id="ai-played-card" class="card played-card hidden"></div>
+                <div id="player-played-card" class="card played-card hidden"></div>
+            </div>
+
+            <div id="status-message" class="game-info text-2xl font-bold text-blue-600 my-4"></div>
+
+            <div class="text-xl font-bold mt-8 mb-4">Votre main</div>
+            <div id="player-hand" class="player-hand"></div>
+        </div>
+
+        <div id="start-screen">
+            <div id="game-intro" class="mb-8 game-rules">
+                <h2 class="text-2xl font-bold text-gray-700">Règles du jeu</h2>
+                <ul class="list-disc list-inside mt-4 text-left mx-auto max-w-md text-gray-600">
+                    <li>Le jeu a 7 plis et chaque joueur reçoit 7 cartes.</li>
+                    <li>Vous devez jouer une carte <strong>supérieure ou égale</strong> à la carte la plus haute du pli. Si vous ne pouvez pas, vous devez jouer votre carte <strong>la plus basse</strong>.</li>
+                    <li>Le joueur qui joue la carte la plus haute gagne le pli et mène le suivant.</li>
+                    <li><strong>Règle principale</strong>: Le joueur qui gagne le dernier pli reçoit des pénalités de cornichons.</li>
+                    <li>Le jeu se termine quand quelqu'un a plus de 5 cornichons.</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold text-gray-700 mt-6 mb-3">Marquage</h3>
+                <p class="text-sm text-gray-600 mb-3"><strong>Obtenir des cornichons:</strong> Le joueur qui gagne le 7ème pli reçoit des cornichons comme pénalité. Le nombre dépend de la valeur de votre carte gagnante :</p>
+                <div class="text-sm text-gray-600 text-left mx-auto max-w-md">
+                    <div class="grid grid-cols-2 gap-2 mb-3">
+                        <div><strong>Carte 1:</strong> 0 cornichon</div>
+                        <div><strong>Cartes 2-5:</strong> 1 cornichon</div>
+                        <div><strong>Cartes 6-9:</strong> 2 cornichons</div>
+                        <div><strong>Cartes 10-11:</strong> 3 cornichons</div>
+                        <div><strong>Cartes 12-14:</strong> 4 cornichons</div>
+                        <div><strong>Carte 15:</strong> 5 cornichons</div>
+                    </div>
+                    <p><strong>Double pénalité:</strong> Si quelqu'un joue une carte de valeur 1 dans le 7ème pli, le gagnant reçoit le double de cornichons.</p>
+                </div>
+            </div>
+            <div class="action-buttons" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <button id="start-btn" class="btn">Commencer le jeu 🎮</button>
+                <button id="share-btn" class="btn btn-secondary">Partager le jeu 💫</button>
             </div>
         </div>
-    </section>
 
-    <!-- Game Screenshot -->
-    <section class="py-12 px-4 bg-white">
-        <img src="https://via.placeholder.com/800x600/4a7c3a/ffffff?text=Five+Cornichons+Game" 
-             alt="Capture d'écran du jeu Cinq Cornichons" 
-             class="game-screenshot">
-    </section>
+        <!-- Game Over Modal -->
+        <div id="end-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
+            <div class="game-over-container" style="
+                background: linear-gradient(135deg, var(--pickle-beige) 0%, var(--pickle-yellow-cream) 50%, var(--pickle-green-pale) 100%);
+                padding: 48px;
+                border-radius: 35px;
+                text-align: center;
+                max-width: 500px;
+                width: 90%;
+                box-shadow: 
+                    0 30px 80px var(--shadow-green),
+                    0 15px 40px var(--shadow-yellow);
+                border: 4px solid var(--pickle-gold);
+                position: relative;
+                animation: modalExplosion 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                overflow: hidden;
+            ">
+                <div id="winner-content" class="winner-section" style="position: relative; z-index: 10;">
+                    <div style="font-size: 5rem; margin-bottom: 20px; animation: championBounce 1.5s ease-in-out infinite;">🏆</div>
+                    <h2 id="end-message" style="
+                        font-size: 3.2rem;
+                        background: linear-gradient(45deg, var(--pickle-gold), var(--pickle-yellow), var(--pickle-gold));
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        margin-bottom: 18px;
+                        font-weight: 900;
+                        text-shadow: 2px 2px 8px var(--shadow-yellow);
+                        animation: victoryPulse 2s ease-in-out infinite;
+                        font-family: 'Poppins', sans-serif;
+                        letter-spacing: 2px;
+                    ">🎉 CHAMPION ! 🎉</h2>
+                    <div style="
+                        font-size: 1.6rem;
+                        color: var(--pickle-green-dark);
+                        margin-bottom: 16px;
+                        font-weight: 700;
+                        animation: celebrateText 3s ease-in-out infinite;
+                    ">Vous avez maîtrisé les cornichons !</div>
+                    <p id="end-score" style="
+                        font-size: 1.4rem;
+                        margin-bottom: 24px;
+                        color: var(--text-dark);
+                        font-weight: 600;
+                        background: var(--pickle-yellow-cream);
+                        padding: 12px 20px;
+                        border-radius: 20px;
+                        border: 2px solid var(--pickle-green-light);
+                        animation: fadeInUp 1s ease-out 0.5s both;
+                    "></p>
+                    
+                    <div style="margin: 20px 0; display: flex; justify-content: center; gap: 20px;">
+                        <span style="font-size: 2.5rem; animation: victoryFloat 3s ease-in-out infinite;">🥇</span>
+                        <span style="font-size: 2.5rem; animation: victoryFloat 3s ease-in-out infinite 0.5s;">🎖️</span>
+                        <span style="font-size: 2.5rem; animation: victoryFloat 3s ease-in-out infinite 1s;">👑</span>
+                    </div>
+                </div>
+                
+                <div id="loser-content" class="loser-section hidden" style="position: relative; z-index: 10;">
+                    <div style="font-size: 5rem; margin-bottom: 20px; animation: pickleShame 2s ease-in-out infinite;">🥒</div>
+                    <h2 style="
+                        font-size: 2.8rem;
+                        background: linear-gradient(45deg, var(--pickle-green-dark), var(--pickle-green), var(--pickle-green-dark));
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        margin-bottom: 18px;
+                        font-weight: 800;
+                        text-shadow: 1px 1px 4px var(--shadow-green);
+                        animation: defeatWobble 2.5s ease-in-out infinite;
+                        font-family: 'Poppins', sans-serif;
+                        letter-spacing: 1px;
+                    ">🥒 CONFIT ! 🥒</h2>
+                    <div style="
+                        font-size: 1.5rem;
+                        color: var(--pickle-green-dark);
+                        margin-bottom: 16px;
+                        font-weight: 600;
+                        animation: shameText 3s ease-in-out infinite;
+                    ">C'est l'heure de manger les cornichons !</div>
+                    <p style="
+                        font-size: 1.3rem;
+                        margin-bottom: 20px;
+                        color: var(--text-medium);
+                        font-weight: 500;
+                        background: var(--pickle-green-pale);
+                        padding: 16px 24px;
+                        border-radius: 20px;
+                        border: 2px solid var(--pickle-yellow);
+                        animation: fadeInUp 1s ease-out 0.5s both;
+                    ">Vous avez été pris avec le dernier pli ! 🥒💔</p>
+                    
+                    <div style="margin: 20px 0; padding: 16px; background: rgba(77, 124, 58, 0.1); border-radius: 20px; border: 2px solid var(--pickle-green-light);">
+                        <div style="font-size: 1.4rem; color: var(--pickle-green-dark); font-weight: 700; margin-bottom: 8px;">
+                            💀 Temps de punition ! 💀
+                        </div>
+                        <div style="font-size: 1.1rem; color: var(--text-medium); animation: pickleEating 2s ease-in-out infinite;">
+                            Vous devez manger 3 cornichons supplémentaires ! 🥒🥒🥒
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 16px; margin-top: 24px; justify-content: center; flex-wrap: wrap;">
+                    <button id="restart-btn" class="btn" style="z-index: 15; position: relative; flex: 1; min-width: 160px;">
+                        Jouer encore ! 🎮
+                    </button>
+                    <button id="share-game-btn" class="btn btn-secondary" style="z-index: 15; position: relative; flex: 1; min-width: 160px;">
+                        Partager la victoire ! 🎊
+                    </button>
+                </div>
+            </div>
+        </div>
 
-    <!-- Quick Rules -->
-    <section class="rules-section">
-        <div class="rules-card">
-            <h2 class="rules-title">🎯 Comment jouer</h2>
-            <ul class="rules-list">
-                <li><strong>Objectif :</strong> Évitez de gagner le dernier pli - vous perdez pour gagner !</li>
-                <li><strong>Joueurs :</strong> 2-6 joueurs à partir de 8 ans</li>
-                <li><strong>Durée :</strong> 15-30 minutes par partie</li>
-                <li><strong>Stratégie :</strong> Utilisez vos cartes judicieusement pour éviter le dernier pli</li>
-                <li><strong>Gagnant :</strong> Le joueur avec le moins de points gagne</li>
-            </ul>
+        <!-- Share Modal -->
+        <div id="share-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
+            <div class="share-modal-content" style="
+                background: white;
+                padding: 32px;
+                border-radius: 25px;
+                max-width: 400px;
+                width: 90%;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                text-align: center;
+                position: relative;
+            ">
+                <button id="close-share-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                
+                <h3 style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: var(--pickle-green-dark);
+                    margin-bottom: 16px;
+                    font-family: 'Poppins', sans-serif;
+                ">Partager le jeu</h3>
+                
+                <p style="
+                    font-size: 1.1rem;
+                    color: var(--text-medium);
+                    margin-bottom: 24px;
+                ">Partagez ce jeu de stratégie paisible avec vos amis !</p>
+                
+                <div class="share-links" style="display: flex; justify-content: center; gap: 12px; margin-bottom: 24px;">
+                    <a href="#" class="share-link" data-platform="twitter" style="
+                        background: #1DA1F2;
+                        color: white;
+                        padding: 12px;
+                        border-radius: 50%;
+                        text-decoration: none;
+                        font-size: 1.5rem;
+                        transition: transform 0.3s ease;
+                    ">𝕏</a>
+                    <a href="#" class="share-link" data-platform="facebook" style="
+                        background: #4267B2;
+                        color: white;
+                        padding: 12px;
+                        border-radius: 50%;
+                        text-decoration: none;
+                        font-size: 1.5rem;
+                        transition: transform 0.3s ease;
+                    ">f</a>
+                    <a href="#" class="share-link" data-platform="whatsapp" style="
+                        background: #25D366;
+                        color: white;
+                        padding: 12px;
+                        border-radius: 50%;
+                        text-decoration: none;
+                        font-size: 1.5rem;
+                        transition: transform 0.3s ease;
+                    ">📱</a>
+                </div>
+                
+                <button id="copy-link-btn" style="
+                    background: var(--pickle-green);
+                    color: white;
+                    border: none;
+                    padding: 12px 24px;
+                    border-radius: 20px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    width: 100%;
+                ">Copier le lien</button>
+            </div>
         </div>
-    </section>
 
-    <!-- Features -->
-    <section class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">🎴</div>
-            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Gameplay stratégique</h3>
-            <p style="color: var(--text-medium);">Anticipez et planifiez vos coups attentivement. Chaque décision compte !</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">👥</div>
-            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Action multijoueur</h3>
-            <p style="color: var(--text-medium);">Parfait pour 2-6 joueurs. Idéal pour les soirées en famille ou entre amis.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Parties rapides</h3>
-            <p style="color: var(--text-medium);">Chaque partie ne dure que 15-30 minutes. Parfait pour un amusement rapide.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🏆</div>
-            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Compétitif</h3>
-            <p style="color: var(--text-medium);">Maîtrisez la stratégie et dominez vos amis dans ce jeu unique.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🎨</div>
-            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Design magnifique</h3>
-            <p style="color: var(--text-medium);">Profitez du thème attrayant des cornichons et des graphiques de haute qualité.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">📱</div>
-            <h3 class="text-2xl font-bold mb-4" style="color: var(--pickle-green-dark);">Sur tous les appareils</h3>
-            <p style="color: var(--text-medium);">Jouez sur votre ordinateur, tablette ou smartphone. Aucun téléchargement requis !</p>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Prêt pour l'aventure cornichon ?</h2>
-        <p class="text-xl mb-8 max-w-2xl mx-auto">
-            Rejoignez une communauté grandissante de joueurs qui adorent ce défi stratégique unique !
-        </p>
-        <button class="pickle-button bouncing" onclick="startGame()">
-            🎮 Jouer maintenant
-        </button>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Cinq Cornichons. Conçu par Friedemann Friese. Tous droits réservés.</p>
-        <div class="mt-4">
-            <a href="/fr/about.html" class="nav-link mx-2">À propos</a>
-            <a href="/fr/about.html#contact" class="nav-link mx-2">Contact</a>
-            <a href="/fr/about.html#privacy" class="nav-link mx-2">Confidentialité</a>
-        </div>
-    </footer>
+        <style>
+            @keyframes modalExplosion {
+                0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+                50% { transform: scale(1.1) rotate(5deg); opacity: 0.9; }
+                100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            }
+            
+            @keyframes championBounce {
+                0%, 100% { transform: translateY(0px) scale(1); }
+                50% { transform: translateY(-20px) scale(1.15); }
+            }
+            
+            @keyframes victoryPulse {
+                0%, 100% { 
+                    text-shadow: 2px 2px 8px var(--shadow-yellow);
+                    transform: scale(1);
+                }
+                50% { 
+                    text-shadow: 4px 4px 16px var(--shadow-yellow), 0 0 20px var(--pickle-gold);
+                    transform: scale(1.05);
+                }
+            }
+            
+            @keyframes celebrateText {
+                0%, 100% { transform: translateY(0px); color: var(--pickle-green-dark); }
+                50% { transform: translateY(-5px); color: var(--pickle-gold); }
+            }
+            
+            @keyframes victoryFloat {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                33% { transform: translateY(-10px) rotate(5deg); }
+                66% { transform: translateY(-5px) rotate(-5deg); }
+            }
+            
+            @keyframes pickleShame {
+                0%, 100% { 
+                    transform: scale(1) rotate(0deg);
+                    filter: hue-rotate(0deg);
+                }
+                25% { 
+                    transform: scale(0.9) rotate(-5deg);
+                    filter: hue-rotate(10deg);
+                }
+                50% { 
+                    transform: scale(1.1) rotate(0deg);
+                    filter: hue-rotate(-10deg);
+                }
+                75% { 
+                    transform: scale(0.95) rotate(5deg);
+                    filter: hue-rotate(5deg);
+                }
+            }
+            
+            @keyframes defeatWobble {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: rotate(-2deg) translateX(-3px); }
+                50% { transform: rotate(0deg) translateX(0px); }
+                75% { transform: rotate(2deg) translateX(3px); }
+            }
+            
+            @keyframes shameText {
+                0%, 100% { 
+                    color: var(--pickle-green-dark);
+                    transform: translateY(0px);
+                }
+                50% { 
+                    color: var(--pickle-gold);
+                    transform: translateY(-5px);
+                }
+            }
+            
+            @keyframes pickleEating {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .share-link:hover {
+                transform: scale(1.1);
+            }
+        </style>
+    </div>
 
     <script>
-        function startGame() {
-            alert('Le jeu sera bientôt disponible ! Revenez nous voir plus tard.');
+        // Game State Variables
+        let playerScore = 0;
+        let aiScore = 0;
+        let playerHand = [];
+        let aiHand = [];
+        let currentTrick = [];
+        let isPlayerTurn = true;
+        let isGameInProgress = false;
+        let trickNumber = 0;
+        let playerTricksWon = 0;
+        let aiTricksWon = 0;
+
+        // DOM Elements
+        const startBtn = document.getElementById('start-btn');
+        const shareBtn = document.getElementById('share-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const shareGameBtn = document.getElementById('share-game-btn');
+        const gameScreen = document.getElementById('game-screen');
+        const startScreen = document.getElementById('start-screen');
+        const endModal = document.getElementById('end-modal');
+        const shareModal = document.getElementById('share-modal');
+        const playerHandEl = document.getElementById('player-hand');
+        const aiHandEl = document.getElementById('ai-hand');
+        const playerScoreEl = document.getElementById('player-score');
+        const aiScoreEl = document.getElementById('ai-score');
+        const statusMessageEl = document.getElementById('status-message');
+        const endMessageEl = document.getElementById('end-message');
+        const endScoreEl = document.getElementById('end-score');
+        const winnerContent = document.getElementById('winner-content');
+        const loserContent = document.getElementById('loser-content');
+        const aiPlayedCardEl = document.getElementById('ai-played-card');
+        const playerPlayedCardEl = document.getElementById('player-played-card');
+        const closeShareModal = document.getElementById('close-share-modal');
+        const copyLinkBtn = document.getElementById('copy-link-btn');
+        const navShare = document.getElementById('nav-share');
+
+        // Game Logic
+        function initializeGame() {
+            isGameInProgress = true;
+            trickNumber = 0;
+            playerTricksWon = 0;
+            aiTricksWon = 0;
+            currentTrick = [];
+            
+            // Create deck
+            const deck = [];
+            for (let i = 1; i <= 15; i++) {
+                deck.push(i, i); // Two of each card
+            }
+            
+            // Shuffle deck
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            
+            // Deal hands
+            playerHand = deck.slice(0, 7);
+            aiHand = deck.slice(7, 14);
+            
+            // Sort hands
+            playerHand.sort((a, b) => a - b);
+            aiHand.sort((a, b) => a - b);
+            
+            // Update UI
+            updateHands();
+            updateScores();
+            
+            // Show game screen
+            startScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            endModal.classList.add('hidden');
+            
+            statusMessageEl.textContent = 'Vous commencez ! Jouez une carte.';
+            isPlayerTurn = true;
         }
 
-        function showRules() {
-            window.location.href = '/fr/about.html';
-        }
-
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        function updateHands() {
+            playerHandEl.innerHTML = '';
+            aiHandEl.innerHTML = '';
+            
+            playerHand.forEach((card, index) => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'card';
+                cardEl.textContent = card;
+                cardEl.onclick = () => playCard(index);
+                playerHandEl.appendChild(cardEl);
             });
+            
+            aiHand.forEach(() => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'card';
+                cardEl.textContent = '?';
+                aiHandEl.appendChild(cardEl);
+            });
+        }
+
+        function updateScores() {
+            playerScoreEl.textContent = playerScore;
+            aiScoreEl.textContent = aiScore;
+        }
+
+        function playCard(cardIndex) {
+            if (!isPlayerTurn || !isGameInProgress) return;
+            
+            const card = playerHand[cardIndex];
+            currentTrick.push({ player: 'user', card: card });
+            
+            // Remove card from player hand
+            playerHand.splice(cardIndex, 1);
+            
+            // Show played card
+            playerPlayedCardEl.textContent = card;
+            playerPlayedCardEl.classList.remove('hidden');
+            
+            updateHands();
+            
+            if (currentTrick.length === 2) {
+                // Trick complete
+                setTimeout(() => {
+                    resolveTrick();
+                }, 1000);
+            } else {
+                // AI turn
+                isPlayerTurn = false;
+                statusMessageEl.textContent = 'L\'IA réfléchit...';
+                setTimeout(() => {
+                    aiPlayCard();
+                }, 1000);
+            }
+        }
+
+        function aiPlayCard() {
+            if (aiHand.length === 0 || !isGameInProgress) return;
+            
+            const highestCardInTrick = Math.max(...currentTrick.map(t => t.card));
+            const playableCards = aiHand.filter(card => card >= highestCardInTrick);
+            
+            let cardToPlay;
+            if (playableCards.length > 0) {
+                // Play lowest playable card
+                cardToPlay = Math.min(...playableCards);
+            } else {
+                // Play lowest card
+                cardToPlay = Math.min(...aiHand);
+            }
+            
+            currentTrick.push({ player: 'ai', card: cardToPlay });
+            
+            // Remove card from AI hand
+            const cardIndex = aiHand.indexOf(cardToPlay);
+            aiHand.splice(cardIndex, 1);
+            
+            // Show played card
+            aiPlayedCardEl.textContent = cardToPlay;
+            aiPlayedCardEl.classList.remove('hidden');
+            
+            updateHands();
+            
+            if (currentTrick.length === 2) {
+                // Trick complete
+                setTimeout(() => {
+                    resolveTrick();
+                }, 1000);
+            } else {
+                // Player turn
+                isPlayerTurn = true;
+                statusMessageEl.textContent = 'Votre tour - jouez une carte.';
+            }
+        }
+
+        function resolveTrick() {
+            const highestCard = Math.max(...currentTrick.map(t => t.card));
+            const winner = currentTrick.find(t => t.card === highestCard);
+            
+            if (winner.player === 'user') {
+                playerTricksWon++;
+                statusMessageEl.textContent = `Vous gagnez le pli avec la carte ${highestCard} !`;
+            } else {
+                aiTricksWon++;
+                statusMessageEl.textContent = `L'IA gagne le pli avec la carte ${highestCard} !`;
+            }
+            
+            trickNumber++;
+            
+            // Clear played cards
+            setTimeout(() => {
+                aiPlayedCardEl.classList.add('hidden');
+                playerPlayedCardEl.classList.add('hidden');
+                currentTrick = [];
+                
+                if (trickNumber === 7) {
+                    // Game over
+                    setTimeout(() => {
+                        endGame();
+                    }, 1000);
+                } else {
+                    // Continue game
+                    isPlayerTurn = winner.player === 'user';
+                    if (isPlayerTurn) {
+                        statusMessageEl.textContent = 'Vous gagnez et menez le pli suivant.';
+                    } else {
+                        statusMessageEl.textContent = 'L\'IA gagne et mène le pli suivant.';
+                        setTimeout(() => {
+                            aiPlayCard();
+                        }, 1000);
+                    }
+                }
+            }, 1500);
+        }
+
+        function endGame() {
+            isGameInProgress = false;
+            
+            // Determine who gets cornichons (7th trick winner)
+            const lastTrickWinner = playerTricksWon > aiTricksWon ? 'user' : 'ai';
+            
+            if (lastTrickWinner === 'user') {
+                // Player gets cornichons
+                const penaltyCard = currentTrick.find(t => t.player === 'user')?.card || 1;
+                const cornichons = calculateCornichons(penaltyCard);
+                playerScore += cornichons;
+                
+                endMessageEl.textContent = 'Jeu terminé ! Vous perdez.';
+                endScoreEl.textContent = `Vous recevez ${cornichons} cornichon(s) pour le dernier pli !`;
+                shareGameBtn.innerHTML = 'Partager la défaite ! 💔';
+                shareGameBtn.className = 'btn btn-secondary';
+                
+                winnerContent.classList.add('hidden');
+                loserContent.classList.remove('hidden');
+            } else {
+                // AI gets cornichons
+                const penaltyCard = currentTrick.find(t => t.player === 'ai')?.card || 1;
+                const cornichons = calculateCornichons(penaltyCard);
+                aiScore += cornichons;
+                
+                endMessageEl.textContent = 'Jeu terminé ! Vous gagnez !';
+                endScoreEl.textContent = `L'IA reçoit ${cornichons} cornichon(s) pour le dernier pli !`;
+                shareGameBtn.innerHTML = 'Partager la victoire ! 🎊';
+                shareGameBtn.className = 'btn btn-secondary';
+                
+                winnerContent.classList.remove('hidden');
+                loserContent.classList.add('hidden');
+            }
+            
+            updateScores();
+            
+            // Show end modal
+            endModal.classList.remove('hidden');
+            gameScreen.classList.add('hidden');
+        }
+
+        function calculateCornichons(cardValue) {
+            if (cardValue === 1) return 0;
+            if (cardValue <= 5) return 1;
+            if (cardValue <= 9) return 2;
+            if (cardValue <= 11) return 3;
+            if (cardValue <= 14) return 4;
+            if (cardValue === 15) return 5;
+            return 0;
+        }
+
+        function restartGame() {
+            if (playerScore >= 5 || aiScore >= 5) {
+                // Reset scores
+                playerScore = 0;
+                aiScore = 0;
+            }
+            
+            endModal.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+            gameScreen.classList.add('hidden');
+        }
+
+        function shareGame() {
+            const gameUrl = window.location.href;
+            const gameTitle = 'Cinq Cornichons - Le jeu de stratégie relaxant';
+            const gameDescription = 'Un jeu de cartes pacifique où vous perdez pour gagner ! Parfait pour les esprits stratégiques.';
+            
+            // Update share links
+            const twitterLink = document.querySelector('[data-platform="twitter"]');
+            const facebookLink = document.querySelector('[data-platform="facebook"]');
+            const whatsappLink = document.querySelector('[data-platform="whatsapp"]');
+            
+            if (twitterLink) {
+                twitterLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(gameDescription)}&url=${encodeURIComponent(gameUrl)}`;
+            }
+            if (facebookLink) {
+                facebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(gameUrl)}`;
+            }
+            if (whatsappLink) {
+                whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(gameDescription + ' ' + gameUrl)}`;
+            }
+            
+            // Show share modal
+            shareModal.classList.remove('hidden');
+        }
+
+        function closeShareModals() {
+            shareModal.classList.add('hidden');
+        }
+
+        function copyLink() {
+            const gameUrl = window.location.href;
+            navigator.clipboard.writeText(gameUrl).then(() => {
+                copyLinkBtn.textContent = 'Copié !';
+                copyLinkBtn.style.background = 'var(--pickle-green)';
+                setTimeout(() => {
+                    copyLinkBtn.textContent = 'Copier le lien';
+                    copyLinkBtn.style.background = 'var(--pickle-green)';
+                }, 2000);
+            });
+        }
+
+        // Event Listeners
+        startBtn.addEventListener('click', initializeGame);
+        restartBtn.addEventListener('click', restartGame);
+        shareBtn.addEventListener('click', shareGame);
+        shareGameBtn.addEventListener('click', shareGame);
+        closeShareModal.addEventListener('click', closeShareModals);
+        copyLinkBtn.addEventListener('click', copyLink);
+        navShare.addEventListener('click', (e) => {
+            e.preventDefault();
+            shareGame();
         });
 
-        // Add intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Close modals when clicking outside
+        endModal.addEventListener('click', (e) => {
+            if (e.target === endModal) {
+                endModal.classList.add('hidden');
+            }
+        });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all feature cards
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+        shareModal.addEventListener('click', (e) => {
+            if (e.target === shareModal) {
+                closeShareModals();
+            }
         });
     </script>
 </body>
