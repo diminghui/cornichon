@@ -1094,15 +1094,31 @@
         }
 
         function resolveTrick() {
-            const highestCard = Math.max(...currentTrick.map(t => t.card));
-            const winner = currentTrick.find(t => t.card === highestCard);
+            let winningCard;
+            let winner;
             
-            if (winner.player === 'user') {
+            // Determine the winner - check if there's a tie
+            const playerCard = currentTrick.find(t => t.player === 'user');
+            const aiCard = currentTrick.find(t => t.player === 'ai');
+            
+            if (playerCard.card > aiCard.card) {
+                winningCard = playerCard;
+                winner = 'user';
+            } else if (aiCard.card > playerCard.card) {
+                winningCard = aiCard;
+                winner = 'ai';
+            } else {
+                // Tie, the last player to play wins
+                winningCard = currentTrick[1];
+                winner = currentTrick[1].player;
+            }
+            
+            if (winner === 'user') {
                 playerTricksWon++;
-                statusMessageEl.textContent = `Du gewinnst den Stich mit Karte ${highestCard}!`;
+                statusMessageEl.textContent = `Du gewinnst den Stich mit Karte ${winningCard.card}!`;
             } else {
                 aiTricksWon++;
-                statusMessageEl.textContent = `KI gewinnt den Stich mit Karte ${highestCard}!`;
+                statusMessageEl.textContent = `KI gewinnt den Stich mit Karte ${winningCard.card}!`;
             }
             
             trickNumber++;
