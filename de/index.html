@@ -1006,6 +1006,23 @@
             if (!isPlayerTurn || !isGameInProgress) return;
             
             const card = playerHand[cardIndex];
+            
+            // Validate player's move according to the rules
+            if (currentTrick.length > 0) {
+                const highestCardInTrick = Math.max(...currentTrick.map(t => t.card));
+                const canPlayHigher = playerHand.some(c => c >= highestCardInTrick);
+                
+                if (canPlayHigher && card < highestCardInTrick) {
+                    statusMessageEl.textContent = 'Du musst eine Karte spielen, die größer oder gleich der höchsten Karte im Stich ist.';
+                    return;
+                }
+                
+                if (!canPlayHigher && card !== Math.min(...playerHand)) {
+                    statusMessageEl.textContent = 'Du musst deine niedrigste Karte spielen.';
+                    return;
+                }
+            }
+            
             currentTrick.push({ player: 'user', card: card });
             
             // Remove card from player hand
@@ -1034,16 +1051,23 @@
         function aiPlayCard() {
             if (aiHand.length === 0 || !isGameInProgress) return;
             
-            const highestCardInTrick = Math.max(...currentTrick.map(t => t.card));
-            const playableCards = aiHand.filter(card => card >= highestCardInTrick);
-            
             let cardToPlay;
-            if (playableCards.length > 0) {
-                // Play lowest playable card
-                cardToPlay = Math.min(...playableCards);
+            const highestCardInTrick = Math.max(...currentTrick.map(t => t.card));
+            const canPlayHigher = aiHand.some(card => card >= highestCardInTrick);
+            
+            // AI Logic
+            if (currentTrick.length === 0) {
+                // AI is the leader, plays smallest card to save high cards
+                cardToPlay = aiHand[0];
             } else {
-                // Play lowest card
-                cardToPlay = Math.min(...aiHand);
+                if (canPlayHigher) {
+                    // Rule 1: Must play a card >= max value if possible
+                    const playableCards = aiHand.filter(card => card >= highestCardInTrick);
+                    cardToPlay = playableCards[0]; // Play the smallest possible winning card
+                } else {
+                    // Rule 2: Must play the smallest card
+                    cardToPlay = aiHand[0];
+                }
             }
             
             currentTrick.push({ player: 'ai', card: cardToPlay });
