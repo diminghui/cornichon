@@ -1,0 +1,17 @@
+# Ads.txt file for cornichon.online
+# This file helps prevent ad fraud and ensures only authorized sellers can display ads
+# Last updated: 2025-09-14
+
+# Google AdSense
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+
+# Add your authorized sellers here
+# Format: <Field #1>, <Field #2>, <Field #3>, <Field #4>
+# Field #1: Domain name of the advertising system
+# Field #2: Publisher's Account ID
+# Field #3: Type of Account/Relationship
+# Field #4: Certification Authority ID
+
+# Example for other ad networks:
+# adnetwork.com, pub-your-publisher-id, DIRECT, your-certification-id
+# adnetwork.com, pub-your-publisher-id, RESELLER, your-certification-id
