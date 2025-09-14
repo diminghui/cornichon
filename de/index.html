@@ -909,6 +909,8 @@
         let trickNumber = 0;
         let playerTricksWon = 0;
         let aiTricksWon = 0;
+        let lastTrickWinner = null;
+        let lastTrickWinningCard = null;
 
         // DOM Elements
         const startBtn = document.getElementById('start-btn');
@@ -940,6 +942,8 @@
             trickNumber = 0;
             playerTricksWon = 0;
             aiTricksWon = 0;
+            lastTrickWinner = null;
+            lastTrickWinningCard = null;
             currentTrick = [];
             
             // Create deck - 4 of each card like English version
@@ -1134,7 +1138,9 @@
                 currentTrick = [];
                 
                 if (trickNumber === 7) {
-                    // Game over
+                    // Game over - save the 7th trick winner before clearing
+                    lastTrickWinner = winner;
+                    lastTrickWinningCard = winningCard;
                     setTimeout(() => {
                         endGame();
                     }, 1000);
@@ -1155,34 +1161,30 @@
 
         function endGame() {
             isGameInProgress = false;
-            
-            // Determine who gets cornichons (7th trick winner)
-            const lastTrickWinner = playerTricksWon > aiTricksWon ? 'user' : 'ai';
-            
+
+            // Who gets cornichons (7th trick winner)
             if (lastTrickWinner === 'user') {
-                // Player gets cornichons
-                const penaltyCard = currentTrick.find(t => t.player === 'user')?.card || 1;
-                const cornichons = calculateCornichons(penaltyCard);
+                // Player gets cornichons (penalty for winning the last trick)
+                const cornichons = calculateCornichons(lastTrickWinningCard.card);
                 playerScore += cornichons;
-                
+
                 endMessageEl.textContent = 'Spiel vorbei! Du verlierst.';
                 endScoreEl.textContent = `Du erhältst ${cornichons} Gurke(n) für den letzten Stich!`;
                 shareGameBtn.innerHTML = 'Niederlage teilen! 💔';
                 shareGameBtn.className = 'btn btn-secondary';
-                
+
                 winnerContent.classList.add('hidden');
                 loserContent.classList.remove('hidden');
             } else {
-                // AI gets cornichons
-                const penaltyCard = currentTrick.find(t => t.player === 'ai')?.card || 1;
-                const cornichons = calculateCornichons(penaltyCard);
+                // AI gets cornichons (penalty for winning the last trick)
+                const cornichons = calculateCornichons(lastTrickWinningCard.card);
                 aiScore += cornichons;
-                
+
                 endMessageEl.textContent = 'Spiel vorbei! Du gewinnst!';
                 endScoreEl.textContent = `KI erhält ${cornichons} Gurke(n) für den letzten Stich!`;
                 shareGameBtn.innerHTML = 'Sieg teilen! 🎊';
                 shareGameBtn.className = 'btn btn-secondary';
-                
+
                 winnerContent.classList.remove('hidden');
                 loserContent.classList.add('hidden');
             }
