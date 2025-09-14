@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu'est-ce qu'un cornichon? Guide complet des cornichons français | Cornichons expliqués</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Guide complet des cornichons - cornichons français aigres. Découvrez ce que sont les cornichons, leur signification, leur goût, leurs utilisations et où les acheter. Découvrez la différence entre les cornichons et les cornichons.">
+    <meta name="keywords" content="cornichon, cornichons, qu'est-ce qu'un cornichon, signification cornichon, cornichon vs cornichon, recette cornichon, cornichon français, cornichons au vinaigre, substitut cornichon, que sont les cornichons, signification cornichon anglais, goût cornichon, pamplemousse vinaigrette cornichon">
+    <meta name="author" content="Cornichon Guide">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="French">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Qu'est-ce qu'un cornichon? Guide complet des cornichons français">
+    <meta property="og:description" content="Découvrez tout sur les cornichons - cornichons français aigres. Découvrez leur signification, leur goût, leurs utilisations et comment ils diffèrent des cornichons ordinaires.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://cornichon.online/fr/cornichon-guide.html">
+    <meta property="og:site_name" content="Cornichon Guide">
+    <meta property="og:locale" content="fr_FR">
+
+    <!-- hreflang tags -->
+    <link rel="alternate" hreflang="en" href="https://cornichon.online/cornichon-guide.html" />
+    <link rel="alternate" hreflang="de" href="https://cornichon.online/de/cornichon-guide.html" />
+    <link rel="alternate" hreflang="fr" href="https://cornichon.online/fr/cornichon-guide.html" />
+    <link rel="alternate" hreflang="x-default" href="https://cornichon.online/cornichon-guide.html" />
+
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://cornichon.online/fr/cornichon-guide.html">
+    <meta name="theme-color" content="#4a7c3a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5NGEFM2BJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-X5NGEFM2BJ');
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Cornichons专属黄绿配色系统 */
+        :root {
+            --pickle-green-dark: #2d5016;
+            --pickle-green: #4a7c3a;
+            --pickle-green-light: #6ba854;
+            --pickle-green-pale: #a4d084;
+            --pickle-yellow: #f4e342;
+            --pickle-yellow-light: #f7ec6b;
+            --pickle-yellow-cream: #fdf6a4;
+            --pickle-beige: #f9f3d9;
+            --pickle-gold: #d4af37;
+            --text-dark: #2d3a1f;
+            --text-medium: #4a5d3a;
+            --text-light: #6b7c5b;
+            --shadow-green: rgba(77, 124, 58, 0.3);
+            --shadow-yellow: rgba(244, 227, 66, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--pickle-yellow) 0%, var(--pickle-green-light) 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 243, 217, 0.9) 100%);
+            border-radius: 30px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px var(--shadow-green);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--pickle-green-dark) 0%, var(--pickle-green) 30%, var(--pickle-yellow) 70%, var(--pickle-gold) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px var(--shadow-green);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pickle-green-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '🥒';
+            font-size: 1.5rem;
+        }
+
+        .answer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .answer-card {
+            background: linear-gradient(135deg, var(--pickle-beige) 0%, rgba(255, 255, 255, 0.9) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--pickle-yellow-light);
+            box-shadow: 0 8px 20px var(--shadow-yellow);
+        }
+
+        .answer-card h3 {
+            color: var(--pickle-green-dark);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .answer-card p {
+            color: var(--text-medium);
+            font-size: 1rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--pickle-yellow-light) 0%, var(--pickle-beige) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid var(--pickle-green);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-green);
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--pickle-green-pale);
+        }
+
+        .comparison-table th {
+            background: var(--pickle-green);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: var(--pickle-beige);
+        }
+
+        .recipe-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .recipe-steps li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--pickle-beige);
+            border-radius: 10px;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .recipe-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--pickle-green);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--pickle-green) 0%, var(--pickle-green-light) 50%, var(--pickle-yellow) 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px var(--shadow-green);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .answer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="window.location.href='/cornichon-guide.html'">EN</button>
+        <button class="lang-btn" onclick="window.location.href='/de/cornichon-guide.html'">DE</button>
+        <button class="lang-btn active" onclick="window.location.href='/fr/cornichon-guide.html'">FR</button>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-logo">🥒 Five Cornichons</a></li>
+            <li><a href="about.html" class="nav-link">À propos du jeu</a></li>
+            <li><a href="/fr/cornichon-guide.html" class="nav-link">À propos des cornichons</a></li>
+            <li><a href="index.html#share" class="nav-link" id="nav-share">Partager</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="hero-title">🥒 Qu'est-ce qu'un cornichon? 🥒</h1>
+            <p style="font-size: 1.2rem; color: var(--text-medium); margin-bottom: 20px;">
+                Votre guide complet des cornichons français - Tout ce que vous devez savoir!
+            </p>
+            <p style="font-size: 1rem; color: var(--text-light);">
+                De la signification des cornichons aux recettes, au goût et où les acheter - nous avons répondu à toutes vos questions sur les cornichons!
+            </p>
+        </div>
+
+        <!-- Qu'est-ce qu'un cornichon Section -->
+        <div class="content-card">
+            <h2 class="section-title">Qu'est-ce qu'un cornichon?</h2>
+            <p style="font-size: 1.1rem; color: var(--text-medium); margin-bottom: 20px;">
+                Un <strong>cornichon</strong> est un petit cornichon français aigre fabriqué à partir de minuscules concombres récoltés lorsqu'ils ne font que 2-5 cm de long. Ces mini-cornichons sont connus pour leur goût aigre distinctif et leur texture croustillante, ce qui en fait un aliment de base de la cuisine française et de la gastronomie mondiale.
+            </p>
+
+            <div class="highlight-box">
+                <h3 style="color: var(--pickle-green-dark); font-size: 1.3rem; margin-bottom: 10px;">🇫🇷 Signification & Origine du Cornichon</h3>
+                <p><strong>Cornichon</strong> est français et signifie "petite corne" - cela fait référence à la petite forme courbée de ces concombres marinés. Ils proviennent de France et sont un élément traditionnel de la charcuterie et de la cuisine françaises depuis des siècles.</p>
+            </div>
+        </div>
+
+        <!-- Questions Fréquemment Posées -->
+        <div class="content-card">
+            <h2 class="section-title">Questions Fréquemment Posées sur les Cornichons</h2>
+            <div class="answer-grid">
+                <div class="answer-card">
+                    <h3>Qu'est-ce qu'un cornichon?</h3>
+                    <p>Un cornichon est un petit cornichon français aigre fabriqué à partir de concombres miniatures. Ils mesurent généralement 2-5 cm de long, sont marinés dans du vinaigre avec des herbes comme l'estragon, des graines de moutarde et des oignons perlés, leur donnant une saveur aigre distinctive.</p>
+                </div>
+
+                <div class="answer-card">
+                    <h3>Que signifie cornichon en anglais?</h3>
+                    <p>En anglais, un cornichon est simplement appelé "cornichon français" ou "cornichon français". Cependant, de nombreux gastronomes préfèrent utiliser le terme français "cornichon" pour les distinguer des cornichons ordinaires en raison de leur taille et de leur profil de saveur uniques.</p>
+                </div>
+
+                <div class="answer-card">
+                    <h3>Que sont les cornichons au vinaigre?</h3>
+                    <p>Les cornichons au vinaigre sont spécifiquement de petits concombres marinés dans une saumure au vinaigre avec des herbes et des épices. Ils sont caractérisés par leur petite taille, leur couleur vert vif, leur texture croustillante et leur saveur aigre plus acide que sucrée.</p>
+                </div>
+
+                <div class="answer-card">
+                    <h3>Quelle est la signification de cornichon?</h3>
+                    <p>Le mot "cornichon" vient du français et signifie "petite corne". Cela fait référence à la petite forme courbée des concombres marinés. En termes culinaires, il fait spécifiquement référence à ces mini-cornichons français.</p>
+                </div>
+
+                <div class="answer-card">
+                    <h3>Quel goût a un cornichon?</h3>
+                    <p>Les cornichons ont une saveur aigre distinctive avec des notes de vinaigre et d'herbes. Ils sont croustillants et fermes, avec une saveur plus complexe que les cornichons ordinaires due à l'ajout d'estragon, de graines de moutarde et d'autres épices dans la saumure.</p>
+                </div>
+
+                <div class="answer-card">
+                    <h3>Qu'est-ce qu'un cornichon cornichon?</h3>
+                    <p>Un cornichon cornichon fait référence au type spécifique de petit concombre utilisé pour faire les cornichons. Ceux-ci sont récoltés lorsqu'ils sont très petits (2-5 cm) et ont la texture et la saveur parfaites pour le marinage comme cornichons.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cornichon vs Cornichon Comparaison -->
+        <div class="content-card">
+            <h2 class="section-title">Cornichon vs Cornichon: Quelle est la différence?</h2>
+            <p style="font-size: 1.1rem; color: var(--text-medium); margin-bottom: 20px;">
+                Bien que tous deux soient des types de concombres marinés, les cornichons et les cornichons ont des caractéristiques distinctes qui les différencient:
+            </p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Caractéristique</th>
+                        <th>Cornichon</th>
+                        <th>Cornichon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Origine</strong></td>
+                        <td>Français</td>
+                        <td>Various (Allemand, Hollandais, Américain)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taille</strong></td>
+                        <td>2-5 cm (très petit)</td>
+                        <td>5-10 cm (plus grand)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Saveur</strong></td>
+                        <td>Aigre, herbeux</td>
+                        <td>Souvent plus sucré, plus doux</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Épices</strong></td>
+                        <td>Estragon, graines de moutarde</td>
+                        <td>Aneth, ail, sucre</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Utilisations</strong></td>
+                        <td>Charcuterie, plats gastronomiques</td>
+                        <td>Sandwiches, burgers, collations</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="content-card" style="text-align: center;">
+            <h2 style="color: var(--pickle-green-dark); font-size: 2rem; margin-bottom: 20px;">
+                🥒 Prêt à essayer les cornichons? 🥒
+            </h2>
+            <p style="font-size: 1.1rem; color: var(--text-medium); margin-bottom: 25px;">
+                Maintenant que vous savez tout sur les cornichons, pourquoi ne pas découvrir le plaisir du jeu "Five Cornichons"?
+                C'est un jeu de cartes stratégique qui capture l'essence de ces délicieux cornichons français!
+            </p>
+            <a href="index.html" class="btn">🎮 Jouer à Five Cornichons</a>
+            <a href="about.html" class="btn">📖 En savoir plus sur le jeu</a>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
