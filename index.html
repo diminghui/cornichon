@@ -1530,25 +1530,79 @@
 
         function handleAITurn() {
             if (aiHand.length === 0 || !isGameInProgress) return;
-            
+
             isPlayerTurn = false; // Prevent player from clicking
 
             let cardToPlay;
             const maxTrickValue = trickCards.length > 0 ? Math.max(...trickCards.map(c => c.value)) : 0;
             const canPlayHigher = aiHand.some(card => card >= maxTrickValue);
-            
-            // AI Logic
+
+            // Enhanced AI Logic with strategy and randomness
             if (trickCards.length === 0) {
-                // AI is the leader, plays smallest card to save high cards
-                cardToPlay = aiHand[0];
+                // AI is the leader - use strategic thinking
+                const aiDifficulty = Math.random();
+
+                if (aiDifficulty < 0.3) {
+                    // 30% chance: Play smallest card (conservative)
+                    cardToPlay = aiHand[0];
+                } else if (aiDifficulty < 0.7) {
+                    // 40% chance: Play a medium card (balanced)
+                    const mediumIndex = Math.floor(aiHand.length / 3);
+                    cardToPlay = aiHand[Math.min(mediumIndex, aiHand.length - 1)];
+                } else {
+                    // 30% chance: Play a random card (unpredictable)
+                    const randomIndex = Math.floor(Math.random() * aiHand.length);
+                    cardToPlay = aiHand[randomIndex];
+                }
             } else {
                 if (canPlayHigher) {
-                    // Rule 1: Must play a card >= max value if possible
+                    // Must play a card >= max value if possible
                     const playableCards = aiHand.filter(card => card >= maxTrickValue);
-                    cardToPlay = playableCards[0]; // Play the smallest possible winning card
+
+                    // Strategic decision based on game situation
+                    const trickNumber = 7 - trickCount; // How many tricks remain
+                    const aiDifficulty = Math.random();
+
+                    if (trickNumber >= 6) {
+                        // Early game: Save high cards, play smallest winning card
+                        cardToPlay = playableCards[0];
+                    } else if (trickNumber >= 4) {
+                        // Mid game: Mix of strategies
+                        if (aiDifficulty < 0.5) {
+                            cardToPlay = playableCards[0]; // Conservative
+                        } else if (aiDifficulty < 0.8) {
+                            // Play a medium winning card
+                            const mediumIndex = Math.min(1, playableCards.length - 1);
+                            cardToPlay = playableCards[mediumIndex];
+                        } else {
+                            // Play highest winning card (aggressive)
+                            cardToPlay = playableCards[playableCards.length - 1];
+                        }
+                    } else {
+                        // Late game: More aggressive to avoid final trick
+                        if (aiDifficulty < 0.3) {
+                            cardToPlay = playableCards[0]; // Still conservative sometimes
+                        } else {
+                            // Play higher cards to win tricks before the final one
+                            const aggressiveIndex = Math.min(2, playableCards.length - 1);
+                            cardToPlay = playableCards[aggressiveIndex] || playableCards[playableCards.length - 1];
+                        }
+                    }
                 } else {
-                    // Rule 2: Must play the smallest card
-                    cardToPlay = aiHand[0];
+                    // Must play the smallest card, but add some unpredictability
+                    const aiDifficulty = Math.random();
+
+                    if (aiDifficulty < 0.8) {
+                        // 80% chance: Follow rules - play smallest
+                        cardToPlay = aiHand[0];
+                    } else {
+                        // 20% chance: Add slight randomness - play second smallest
+                        if (aiHand.length > 1) {
+                            cardToPlay = aiHand[1];
+                        } else {
+                            cardToPlay = aiHand[0];
+                        }
+                    }
                 }
             }
 
